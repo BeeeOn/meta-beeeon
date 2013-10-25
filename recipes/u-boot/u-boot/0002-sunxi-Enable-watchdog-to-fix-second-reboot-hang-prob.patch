@@ -1,0 +1,26 @@
+From 7f05b6bde4e75a2289b1565d496e0b07afe8d26b Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <novotny@rehivetech.com>
+Date: Fri, 25 Oct 2013 14:54:19 +0200
+Subject: [PATCH 2/2] sunxi: Enable watchdog to fix second reboot hang problem
+
+Signed-off-by: Tomas Novotny <novotny@rehivetech.com>
+---
+ include/configs/sunxi-common.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
+index fe82803..d3efae5 100644
+--- a/include/configs/sunxi-common.h
++++ b/include/configs/sunxi-common.h
+@@ -354,7 +354,7 @@
+ #define CONFIG_CMD_I2C
+ 
+ /* Watchdog */
+-#if 0
++#if 1
+ #define CONFIG_WATCHDOG			/* automatic watchdog support */
+ #define CONFIG_CMD_WATCHDOG		/* watchdog command setting the watchdog timeout */
+ #endif
+-- 
+1.7.11.3
+
