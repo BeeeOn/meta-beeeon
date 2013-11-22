@@ -10,7 +10,8 @@ DEPENDS = "virtual/bootloader"
 IMAGE_INSTALL += " \
 	packagegroup-core-boot \
         kernel-modules \
-	openssh-sshd openssh-sftp openssh-sftp-server \
+        openssh-sshd openssh-ssh openssh-sftp openssh-sftp-server \
+        sshfs-fuse \
         cpufrequtils \
         tzdata \
         htop \
