@@ -14,7 +14,7 @@ IMAGE_INSTALL += " \
         sshfs-fuse \
         cpufrequtils \
         tzdata \
-        htop \
+        htop rsync \
         iw wpa-supplicant \
 	${CONMANPKGS} \
 	opkg update-alternatives-cworth \
@@ -22,6 +22,7 @@ IMAGE_INSTALL += " \
         evtest devmem2 procps strace ltrace ldd \
         systemd systemd-machine-units udev \
         distro-feed-configs \
+        e2fsprogs-mke2fs dosfstools sunxi-tools \
 "
 
 IMAGE_LINGUAS       = " "
