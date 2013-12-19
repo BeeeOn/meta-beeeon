@@ -23,6 +23,7 @@ IMAGE_INSTALL += " \
         systemd systemd-machine-units udev \
         distro-feed-configs \
         e2fsprogs-mke2fs dosfstools sunxi-tools \
+        gcc \
 "
 
 IMAGE_LINGUAS       = " "
