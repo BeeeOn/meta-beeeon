@@ -17,7 +17,7 @@ IMAGE_INSTALL += " \
         htop rsync \
         iw wpa-supplicant \
 	${CONMANPKGS} \
-	opkg update-alternatives-cworth \
+	opkg \
         iptables lsof screen socat sysstat \
         evtest devmem2 procps strace ltrace ldd \
         systemd systemd-machine-units udev \
