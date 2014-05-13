@@ -19,12 +19,15 @@ IMAGE_INSTALL += " \
 	${CONMANPKGS} \
 	opkg \
         iptables lsof screen socat sysstat \
-        evtest devmem2 procps strace ltrace ldd \
+        evtest devmem2 procps strace ldd \
         systemd systemd-machine-units udev \
         distro-feed-configs \
         e2fsprogs-mke2fs dosfstools sunxi-tools \
         gcc \
 "
+
+# Broken:
+# ltrace
 
 IMAGE_LINGUAS       = " "
 
