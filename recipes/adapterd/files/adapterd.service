@@ -1,0 +1,13 @@
+[Unit]
+Description=Adapter daemon
+
+[Service]
+TimeoutStartSec=30
+TimeoutStopSec=20
+Nice=-5
+ExecStart=/home/root/iot/adapter-fw/adapter-app --no-interactive
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
