@@ -24,7 +24,12 @@ IMAGE_INSTALL += " \
         distro-feed-configs \
         e2fsprogs-mke2fs dosfstools sunxi-tools \
         gcc \
+        git \
+        python python-modules python-pyspidev \
+        sntp \
+        adapterd-systemd \
 "
+# XXX Not all python-modules should be included
 
 # Broken:
 # ltrace
