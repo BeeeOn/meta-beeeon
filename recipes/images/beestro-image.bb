@@ -34,6 +34,8 @@ IMAGE_INSTALL += " \
 # Broken:
 # ltrace
 
+PREFERRED_VERSION_linux = "git"
+
 IMAGE_LINGUAS       = " "
 
 IMAGE_FEATURES += "package-management"
