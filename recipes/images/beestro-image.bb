@@ -28,6 +28,7 @@ IMAGE_INSTALL += " \
         python python-modules python-pyspidev \
         sntp \
         adapterd-systemd \
+        nano \
 "
 # XXX Not all python-modules should be included
 
