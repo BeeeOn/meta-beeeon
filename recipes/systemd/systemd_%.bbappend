@@ -9,8 +9,9 @@ do_install_append() {
         sed -i -e 's/^#\?ShutdownWatchdogSec=.*/ShutdownWatchdogSec=30s/' ${D}${sysconfdir}/systemd/system.conf
 
         # Configure journal
+        # FIXME Lower RuntimeMaxUse= for production
         sed -i -e 's/^#\?Storage=.*/Storage=volatile/' ${D}${sysconfdir}/systemd/journald.conf
-        sed -i -e 's/^#\?RuntimeMaxUse=.*/RuntimeMaxUse=2M/' ${D}${sysconfdir}/systemd/journald.conf
+        sed -i -e 's/^#\?RuntimeMaxUse=.*/RuntimeMaxUse=200M/' ${D}${sysconfdir}/systemd/journald.conf
         sed -i -e 's/^#\?ForwardToSyslog=.*/ForwardToSyslog=no/' ${D}${sysconfdir}/systemd/journald.conf
         sed -i -e 's/^#\?ForwardToKMsg=.*/ForwardToKMsg=no/' ${D}${sysconfdir}/systemd/journald.conf
         sed -i -e 's/^#\?ForwardToConsole=.*/ForwardToConsole=no/' ${D}${sysconfdir}/systemd/journald.conf
