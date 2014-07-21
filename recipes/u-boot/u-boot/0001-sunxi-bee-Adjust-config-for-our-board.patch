@@ -1,0 +1,84 @@
+From 736133c1e1b0f22cf59cf3f2cba6d55841de51f4 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas.novotny@tbs-biometrics.com>
+Date: Mon, 21 Jul 2014 12:53:24 +0200
+Subject: [PATCH] sunxi: bee: Adjust config for our board
+
+Signed-off-by: Tomas Novotny <novotny@rehivetech.com>
+---
+ include/configs/sunxi-common.h | 32 +++++++-------------------------
+ 1 file changed, 7 insertions(+), 25 deletions(-)
+
+diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
+index a0c41ac..585a1f8 100644
+--- a/include/configs/sunxi-common.h
++++ b/include/configs/sunxi-common.h
+@@ -195,7 +195,7 @@
+ 	"console=ttyS0,115200\0" \
+ 	"panicarg=panic=10\0" \
+ 	"extraargs=\0" \
+-	"loglevel=8\0" \
++	"loglevel=7\0" \
+ 	"scriptaddr=0x44000000\0" \
+ 	"device=mmc\0" \
+ 	"partition=0:1\0" \
+@@ -210,7 +210,8 @@
+ 	  " setenv bootargs console=${console} root=${root}" \
+ 	  " loglevel=${loglevel} ${panicarg} ${extraargs}" \
+ 	  "\0" \
+-	"kernel=uImage\0" \
++	"kernel=zImage\0" \
++	"dtb=sun4i-a10-olinuxino-lime.dtb\0" \
+ 	"bootenv=uEnv.txt\0" \
+ 	"bootscr=boot.scr\0" \
+ 	"script=script.bin\0" \
+@@ -229,27 +230,8 @@
+ 	  "ext2load $device $partition $scriptaddr ${bootenv}" \
+ 	  "\0" \
+ 	"loadkernel=" \
+-	  "if "\
+-	    "bootpath=/boot/" \
+-	    " && " \
+-	    "ext2load $device $partition 0x43000000 ${bootpath}${script}" \
+-	    " && " \
+-	    "ext2load $device $partition 0x48000000 ${bootpath}${kernel}" \
+-	  ";then true; elif " \
+-	    "bootpath=/" \
+-	    " && " \
+-	    "fatload $device $partition 0x43000000 ${script}" \
+-	    " && " \
+-	    "fatload $device $partition 0x48000000 ${kernel}" \
+-	  ";then true; elif " \
+-	    "bootpath=/" \
+-	    " && " \
+-	    "ext2load $device $partition 0x43000000 ${bootpath}${script}" \
+-	    " && " \
+-	    "ext2load $device $partition 0x48000000 ${bootpath}${kernel}" \
+-	  ";then true; else "\
+-	    "false" \
+-	  ";fi" \
++	  "fatload $device $partition 0x46000000 $kernel && " \
++	  "fatload $device $partition 0x49000000 $dtb" \
+ 	  "\0" \
+ 	"autoboot=" \
+ 	  "run loadkernel" \
+@@ -258,7 +240,7 @@
+ 	  " && " \
+ 	  RESET_WATCHDOG \
+ 	  " && " \
+-	  "bootm 0x48000000" \
++	  "bootz 0x46000000 - 0x49000000" \
+ 	  "\0" \
+ 	"boot_ram=" \
+ 	  "saved_stdout=$stdout;setenv stdout nc;"\
+@@ -272,7 +254,7 @@
+ 	  "\0" \
+ 	""
+ 
+-#define CONFIG_BOOTDELAY	3
++#define CONFIG_BOOTDELAY	2
+ #define CONFIG_SYS_BOOT_GET_CMDLINE
+ #define CONFIG_AUTO_COMPLETE
+ 
+-- 
+1.7.12.4
+
