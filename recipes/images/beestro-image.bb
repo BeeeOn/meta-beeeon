@@ -46,4 +46,12 @@ IMAGE_ROOTFS_EXTRA_SPACE = "51200"
 
 export IMAGE_BASENAME = "beestro-image"
 
+ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;"
+set_root_passwd() {
+   sed 's%^root:[^:]*:%root:\$6\$xUeDXeRtnp/Vcez\$S4FUy5qNkhDstvUWhEoRByiEyeJtbRtkW5yq.HdNIgN699H0QtU3JqXl9cHKZeeXRdosnS.pErv7D4eS1bl.A/:%' \
+       < ${IMAGE_ROOTFS}/etc/shadow \
+       > ${IMAGE_ROOTFS}/etc/shadow.new;
+   mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
+}
+
 inherit image
