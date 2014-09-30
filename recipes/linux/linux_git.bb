@@ -8,6 +8,7 @@ COMPATIBLE_MACHINE = "(olinuxino-a10)"
 KERNEL_DEVICETREE_olinuxino-a10 = "sun4i-a10-olinuxino-lime.dtb"
 
 PV = "3.15+gitr${SRCPV}"
+PR = "r1"
 SRCREV_pn-${PN} = "a076583266dea1fa061478eb2149bb92b4736060"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}_git:"
