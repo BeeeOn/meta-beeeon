@@ -29,6 +29,7 @@ IMAGE_INSTALL += " \
         sntp \
         adapterd-systemd \
         nano \
+        which \
 "
 # XXX Not all python-modules should be included
 
