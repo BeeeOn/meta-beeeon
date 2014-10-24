@@ -124,7 +124,7 @@ twi1_scl = port:PB18<2><default><default><default>
 twi1_sda = port:PB19<2><default><default><default>
 
 [twi2_para]
-twi2_used = 0
+twi2_used = 1
 twi2_scl = port:PB20<2><default><default><default>
 twi2_sda = port:PB21<2><default><default><default>
 
@@ -195,12 +195,12 @@ uart_tx = port:PA14<4><1><default><default>
 uart_rx = port:PA15<4><1><default><default>
 
 [spi0_para]
-spi_used = 0
+spi_used = 1
 spi_cs_bitmap = 1
-spi_cs0 = port:PI10<3><default><default><default>
-spi_sclk = port:PI11<3><default><default><default>
-spi_mosi = port:PI12<3><default><default><default>
-spi_miso = port:PI13<3><default><default><default>
+spi_cs0 = port:PI10<2><default><default><default>
+spi_sclk = port:PI11<2><default><default><default>
+spi_mosi = port:PI12<2><default><default><default>
+spi_miso = port:PI13<2><default><default><default>
 
 [spi1_para]
 spi_used = 0
@@ -211,7 +211,7 @@ spi_mosi = port:PA02<4><default><default><default>
 spi_miso = port:PA03<4><default><default><default>
 
 [spi2_para]
-spi_used = 1
+spi_used = 0
 spi_cs_bitmap = 1
 spi_cs0 = port:PC19<3><default><default><default>
 spi_sclk = port:PC20<3><default><default><default>
@@ -233,7 +233,7 @@ spi_dev_num = 1
 [spi_board0]
 modalias = "spidev"
 max_speed_hz = 1000000
-bus_num = 2
+bus_num = 0
 chip_select = 0
 mode = 3
 full_duplex = 0
@@ -912,7 +912,7 @@ key_max = 6
 
 [gpio_para]
 gpio_used = 1
-gpio_num = 13
+gpio_num = 18
 gpio_pin_1 = port:PG00<0><default><default><default>
 gpio_pin_2 = port:PG01<0><default><default><default>
 gpio_pin_3 = port:PG02<0><default><default><default>
@@ -926,6 +926,11 @@ gpio_pin_10 = port:PG11<0><default><default><default>
 gpio_pin_11 = port:PC03<0><default><default><default>
 gpio_pin_12 = port:PC18<0><default><default><default>
 gpio_pin_13 = port:PH00<0><default><default><default>
+gpio_pin_14 = port:PI04<0><default><default><default>
+gpio_pin_15 = port:PI05<0><default><default><default>
+gpio_pin_16 = port:PI18<0><default><default><default>
+gpio_pin_17 = port:PI19<0><default><default><default>
+gpio_pin_18 = port:PI00<0><default><default><default>
 
 [dvfs_table]
 max_freq = 1008000000
