@@ -9,7 +9,7 @@ PV = "master"
 S = "${WORKDIR}/py-spidev-master"
 
 SRC_URI = "https://github.com/doceme/py-spidev/archive/master.zip"
-SRC_URI[md5sum] = "8e58ab0cf53a3af1682519cde0e002a6"
-SRC_URI[sha256sum] = "6355c1a44bdd4898dc84a67b75468efb87628ae9a197057db922fb0511a2ee37"
+SRC_URI[md5sum] = "cfd7918c004ec052a0126151b66da589"
+SRC_URI[sha256sum] = "d2930eb09570c7877b500070009b38209580d22d520fb39cd79e8dbc3930e6ea"
 
 inherit setuptools  
