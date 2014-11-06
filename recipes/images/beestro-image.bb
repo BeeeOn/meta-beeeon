@@ -11,6 +11,7 @@ IMAGE_INSTALL += " \
 	packagegroup-core-boot \
         kernel-modules \
         openssh-sshd openssh-ssh openssh-scp openssh-sftp openssh-sftp-server \
+        libpoco \
         sshfs-fuse \
         cpufrequtils \
         tzdata \
