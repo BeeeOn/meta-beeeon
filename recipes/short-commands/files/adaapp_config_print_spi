@@ -1,0 +1,7 @@
+#!/bin/sh
+echo
+echo "Aktualni konfigurace pro SPI rozhrani" 
+echo "(umisteni: $(readlink adaapp_config_edit_vs))"
+echo "(zakomentovane radky jsou potlaceny)"
+echo
+cat adaapp_config_edit_spi | grep -v '^;'

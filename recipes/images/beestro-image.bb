@@ -30,6 +30,7 @@ IMAGE_INSTALL += " \
         adapterd-systemd \
         nano \
         which \
+        short-commands \
 "
 # XXX Not all python-modules should be included
 
