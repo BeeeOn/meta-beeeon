@@ -1,0 +1,30 @@
+From 508edbc6414fe78ca0c815ec139f5a7ed289a2a9 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Thu, 13 Nov 2014 18:21:51 +0100
+Subject: [PATCH] dts: Add spi0 pins for A10
+
+---
+ arch/arm/boot/dts/sun4i-a10.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10.dtsi b/arch/arm/boot/dts/sun4i-a10.dtsi
+index 459cb63..756ddeb 100644
+--- a/arch/arm/boot/dts/sun4i-a10.dtsi
++++ b/arch/arm/boot/dts/sun4i-a10.dtsi
+@@ -607,6 +607,13 @@
+ 				allwinner,drive = <0>;
+ 				allwinner,pull = <0>;
+ 			};
++
++			spi0_pins_a: spi0@0 {
++				allwinner,pins = "PI10", "PI11", "PI12", "PI13";
++				allwinner,function = "spi0";
++				allwinner,drive = <0>;
++				allwinner,pull = <0>;
++			};
+ 		};
+ 
+ 		timer@01c20c00 {
+-- 
+1.8.3.1
+

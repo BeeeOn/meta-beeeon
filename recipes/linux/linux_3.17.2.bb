@@ -7,19 +7,17 @@ COMPATIBLE_MACHINE = "(olinuxino-a10)"
 
 KERNEL_DEVICETREE_olinuxino-a10 = "sun4i-a10-olinuxino-lime.dtb"
 
-PV = "3.15+gitr${SRCPV}"
-PR = "r22"
-SRCREV_pn-${PN} = "a076583266dea1fa061478eb2149bb92b4736060"
+PV = "3.17.2"
+SRCREV = "906d77a3c6c0578ccb1834875ab53360777b7ff3"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}_git:"
+#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}_git:"
 
-# git://github.com/jwrdegoede/linux-sunxi.git;branch=sunxi-devel;protocol=git
-
-SRC_URI += "git://github.com/linux-sunxi/linux-sunxi.git;branch=sunxi-devel;protocol=git \
+SRC_URI += "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-3.17.y \
         file://defconfig \
         file://0001-Add-spidev-to-the-default-lime-configuration.patch \
         file://0002-DTS-changes-for-Adapter-board-v1.0.patch \
         file://0003-Make-BTN_OL-working-at-least-with-polling-driver.patch \
+        file://0004-dts-Add-spi0-pins-for-A10.patch \
         "
 
 S = "${WORKDIR}/git"
