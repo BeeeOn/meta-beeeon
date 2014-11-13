@@ -19,6 +19,7 @@ SRC_URI += "git://github.com/linux-sunxi/linux-sunxi.git;branch=sunxi-devel;prot
         file://defconfig \
         file://0001-Add-spidev-to-the-default-lime-configuration.patch \
         file://0002-DTS-changes-for-Adapter-board-v1.0.patch \
+        file://0003-Make-BTN_OL-working-at-least-with-polling-driver.patch \
         "
 
 S = "${WORKDIR}/git"
