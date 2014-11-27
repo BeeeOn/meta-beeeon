@@ -32,6 +32,7 @@ IMAGE_INSTALL += " \
         nano \
         which \
         short-commands \
+        i2c-tools \
 "
 # XXX Not all python-modules should be included
 
