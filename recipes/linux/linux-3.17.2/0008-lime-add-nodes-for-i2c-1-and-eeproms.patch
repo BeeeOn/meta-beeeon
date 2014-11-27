@@ -1,0 +1,51 @@
+From fd942867b8f136450ee9e9416fda813e4107764e Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Thu, 27 Nov 2014 19:52:13 +0100
+Subject: [PATCH] lime: add nodes for i2c-1 and eeproms
+
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index ea0d62c..3588225 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -127,15 +127,33 @@
+ 				#interrupt-cells = <1>;
+ 			};
+ 		};
++
++		i2c1: i2c@01c2b000 {
++			pinctrl-names = "default";
++			pinctrl-0 = <&i2c1_pins_a>;
++			status = "okay";
++
++			at24c16: eeprom@50 {
++				compatible = "atmel,24c16";
++				reg = <0x50>;
++				pagesize = <16>;
++			};
++		};
++
+ 		i2c2: i2c@01c2b400 {
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&i2c2_pins_a>;
+ 			status = "okay";
+ 
+-			mcp7940x: rtc@6f {
++			mcp7940x_rtc: rtc@6f {
+ 				compatible = "microchip,mcp7940x";
+ 				reg = <0x6f>;
+ 			};
++
++			mcp7940x_eeprom: eeprom@57 {
++				compatible = "microchip,24c02";
++				reg = <0x57>;
++			};
+ 		};
+ 	};
+ 
+-- 
+1.8.3.1
+
