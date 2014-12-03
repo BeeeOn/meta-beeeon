@@ -1,11 +1,11 @@
 From 3eaf55fa7efe7876bb04161cae157f72abcfa0b1 Mon Sep 17 00:00:00 2001
-From: Tomas Novotny <tomas.novotny@tbs-biometrics.com>
+From: Tomas Novotny <tomas@novotny.cz>
 Date: Fri, 20 Jun 2014 17:23:47 +0200
 Subject: [PATCH] Add spidev to the default lime configuration
 
 Because we have a spidev device.
 
-Signed-off-by: Tomas Novotny <novotny@rehivetech.com>
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
 ---
  arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 12 ++++++++++++
  drivers/spi/spidev.c                           |  1 +
