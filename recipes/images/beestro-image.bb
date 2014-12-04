@@ -27,12 +27,12 @@ IMAGE_INSTALL += " \
         gcc \
         git \
         python python-modules python-pyspidev \
-        sntp \
         adapterd-systemd \
         nano \
         which \
         short-commands \
         i2c-tools \
+        eeprom-get-mac \
 "
 # XXX Not all python-modules should be included
 
