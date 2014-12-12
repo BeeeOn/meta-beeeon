@@ -21,9 +21,9 @@ systemd_postinst_${PN} () {
 #!/bin/sh -e
 if [ x"$D" = "x" ]; then
     # Executed on the device
-    systemctl enable macchange@eth0.service
+    systemctl enable macchange@.service
 else
     # Executed when image is created
-    systemctl --root=$D enable macchange@eth0.service
+    systemctl --root=$D enable macchange@.service
 fi
 }
