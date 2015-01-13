@@ -1,0 +1,112 @@
+From e422a6f29c30b1227e261c50d1fc0fcd7fe8c94a Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Tue, 13 Jan 2015 15:21:41 +0100
+Subject: [PATCH 1/2] sunxi: bee: Adjust boot command for our use-case
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ include/config_distro_bootcmd.h | 29 +++++++++++++++++++++++++----
+ include/configs/sunxi-common.h  |  7 +++----
+ 2 files changed, 28 insertions(+), 8 deletions(-)
+
+diff --git a/include/config_distro_bootcmd.h b/include/config_distro_bootcmd.h
+index be616e8..a6162ff 100644
+--- a/include/config_distro_bootcmd.h
++++ b/include/config_distro_bootcmd.h
+@@ -20,6 +20,17 @@
+ 	#devtypel "_boot=" \
+ 	BOOTENV_SHARED_BLKDEV_BODY(devtypel)
+ 
++#define BOOTENV_SHARED_BLKDEV_BODY_MMC(devtypel) \
++		"if " #devtypel " dev ${devnum}; then " \
++			"setenv devtype " #devtypel "; " \
++			"run scan_dev_for_boot; " \
++			"run mmc_boot_zimage; " \
++		"fi\0"
++
++#define BOOTENV_SHARED_BLKDEV_MMC(devtypel) \
++	#devtypel "_boot=" \
++	BOOTENV_SHARED_BLKDEV_BODY_MMC(devtypel)
++
+ #define BOOTENV_DEV_BLKDEV(devtypeu, devtypel, instance) \
+ 	"bootcmd_" #devtypel #instance "=" \
+ 		"setenv devnum " #instance "; " \
+@@ -29,7 +40,7 @@
+ 	#devtypel #instance " "
+ 
+ #ifdef CONFIG_CMD_MMC
+-#define BOOTENV_SHARED_MMC	BOOTENV_SHARED_BLKDEV(mmc)
++#define BOOTENV_SHARED_MMC	BOOTENV_SHARED_BLKDEV_MMC(mmc)
+ #define BOOTENV_DEV_MMC		BOOTENV_DEV_BLKDEV
+ #define BOOTENV_DEV_NAME_MMC	BOOTENV_DEV_NAME_BLKDEV
+ #else
+@@ -147,10 +158,20 @@
+ 	BOOT_TARGET_DEVICES_references_PXE_without_CONFIG_CMD_DHCP_or_PXE
+ #endif
+ 
++#define BOOTENV_LEGACY_ZIMAGE \
++	"mmc_boot_zimage=" \
++		"echo Executing legacy zImage boot...; " 		\
++		"setenv mmc_devnum 0; "					\
++		"fatload mmc ${mmc_devnum} ${kernel_addr_r} zImage; " 	\
++		"fatload mmc ${mmc_devnum} ${fdt_addr_r} ${fdtfile}; "	\
++		"setenv bootargs console=${console} "			\
++		"root=/dev/mmcblk0p2 rw rootwait panic=12; "		\
++		"bootz ${kernel_addr_r} - ${fdt_addr_r}\0"
++
+ #define BOOTENV_DEV_NAME(devtypeu, devtypel, instance) \
+ 	BOOTENV_DEV_NAME_##devtypeu(devtypeu, devtypel, instance)
+ #define BOOTENV_BOOT_TARGETS \
+-	"boot_targets=" BOOT_TARGET_DEVICES(BOOTENV_DEV_NAME) "\0"
++	"boot_targets=mmc0\0"
+ 
+ #define BOOTENV_DEV(devtypeu, devtypel, instance) \
+ 	BOOTENV_DEV_##devtypeu(devtypeu, devtypel, instance)
+@@ -160,9 +181,10 @@
+ 	BOOTENV_SHARED_SATA \
+ 	BOOTENV_SHARED_SCSI \
+ 	BOOTENV_SHARED_IDE \
+-	"boot_prefixes=/ /boot/\0" \
++	"boot_prefixes=/\0" \
+ 	"boot_scripts=boot.scr.uimg boot.scr\0" \
+ 	BOOTENV_BOOT_TARGETS \
++	BOOTENV_LEGACY_ZIMAGE \
+ 	"bootpart=1\0" \
+ 	\
+ 	"boot_extlinux="                                                  \
+@@ -196,7 +218,6 @@
+ 	"scan_dev_for_boot="                                              \
+ 		"echo Scanning ${devtype} ${devnum}...; "                 \
+ 		"for prefix in ${boot_prefixes}; do "                     \
+-			"run scan_dev_for_extlinux; "                     \
+ 			"run scan_dev_for_scripts; "                      \
+ 		"done\0"                                                  \
+ 	\
+diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
+index 3f890b2..4e1520f 100644
+--- a/include/configs/sunxi-common.h
++++ b/include/configs/sunxi-common.h
+@@ -306,8 +306,7 @@
+ 
+ #ifdef CONFIG_USB_KEYBOARD
+ #define CONSOLE_STDIN_SETTINGS \
+-	"preboot=usb start\0" \
+-	"stdin=serial,usbkbd\0"
++	"stdin=serial\0"
+ #else
+ #define CONSOLE_STDIN_SETTINGS \
+ 	"stdin=serial\0"
+@@ -315,8 +314,8 @@
+ 
+ #ifdef CONFIG_VIDEO
+ #define CONSOLE_STDOUT_SETTINGS \
+-	"stdout=serial,vga\0" \
+-	"stderr=serial,vga\0"
++	"stdout=serial\0" \
++	"stderr=serial\0"
+ #else
+ #define CONSOLE_STDOUT_SETTINGS \
+ 	"stdout=serial\0" \
+-- 
+1.8.3.1
+
