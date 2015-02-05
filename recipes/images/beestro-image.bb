@@ -33,6 +33,7 @@ IMAGE_INSTALL += " \
         short-commands \
         i2c-tools \
         eeprom-get-mac bee-macchange \
+        ethtool \
 "
 # XXX Not all python-modules should be included
 
