@@ -8,7 +8,8 @@ COMPATIBLE_MACHINE = "(olinuxino-a10)"
 KERNEL_DEVICETREE_olinuxino-a10 = "sun4i-a10-olinuxino-lime.dtb"
 
 PV = "3.17.2"
-PR = "r3"
+PR = "r4"
+
 SRCREV = "906d77a3c6c0578ccb1834875ab53360777b7ff3"
 
 SRC_URI += "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-3.17.y \
@@ -21,7 +22,7 @@ SRC_URI += "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.gi
         file://0006-rtc-ds1307-add-support-for-mcp7940x-chips.patch \
         file://0007-of-add-vendor-prefix-for-Pericom-Technology.patch \
         file://0008-lime-add-nodes-for-i2c-1-and-eeproms.patch \
-        file://0009-lime-remove-eeprom-definitions-from-dts.patch \
+        file://0009-lime-remove-eeprom-definition-from-dts.patch \
         "
 
 S = "${WORKDIR}/git"
