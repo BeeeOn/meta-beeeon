@@ -34,7 +34,9 @@ IMAGE_INSTALL += " \
         i2c-tools \
         eeprom-get-mac bee-macchange \
         ethtool \
+        openvpn \
 "
+# XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
 
 # Broken:
