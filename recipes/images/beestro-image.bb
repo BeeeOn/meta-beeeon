@@ -27,7 +27,6 @@ IMAGE_INSTALL += " \
         gcc \
         git \
         python python-modules python-pyspidev \
-        adapterd-systemd \
         nano \
         which \
         short-commands \
@@ -35,6 +34,7 @@ IMAGE_INSTALL += " \
         eeprom-get-mac bee-macchange \
         ethtool \
         openvpn \
+        beeeon-adaapp \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
