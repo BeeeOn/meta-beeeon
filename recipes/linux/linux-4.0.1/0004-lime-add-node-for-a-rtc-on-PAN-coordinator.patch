@@ -1,0 +1,29 @@
+From bb84eb5caa521c9cab4ee52bd6d2d8e7f71bb2dc Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Wed, 19 Nov 2014 17:53:05 +0100
+Subject: [PATCH 4/6] lime: add node for a rtc on PAN coordinator
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 071ca78..64a488e 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -186,7 +186,10 @@
+ 			pinctrl-0 = <&i2c2_pins_a>;
+ 			status = "okay";
+ 
+-			/* Add RTC + EEPROM here */
++			mcp7940x: rtc@6f {
++				compatible = "microchip,mcp7940x";
++				reg = <0x6f>;
++			};
+ 		};
+ 	};
+ 
+-- 
+1.8.3.1
+

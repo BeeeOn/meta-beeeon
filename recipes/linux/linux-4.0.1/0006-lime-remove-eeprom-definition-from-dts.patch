@@ -1,0 +1,33 @@
+From a7bea3aba8f44d1650e09d0ecbc5263ec71c2f41 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Thu, 5 Feb 2015 16:54:16 +0100
+Subject: [PATCH 6/6] lime: remove eeprom definition from dts
+
+This EEPROM is accessed using i2c-tools.
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 97e24bf..e5b96a2 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -204,10 +204,13 @@
+ 				reg = <0x6f>;
+ 			};
+ 
++			/* This EEPROM is accessed using i2c-tools */
++			/*
+ 			mcp7940x_eeprom: eeprom@57 {
+ 				compatible = "microchip,24c02";
+ 				reg = <0x57>;
+ 			};
++			*/
+ 		};
+ 	};
+ 
+-- 
+1.8.3.1
+

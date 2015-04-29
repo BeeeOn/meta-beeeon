@@ -1,0 +1,51 @@
+From b93b6b35da67d3d61193aa05f6e4a79f10e3156f Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Fri, 20 Jun 2014 17:23:47 +0200
+Subject: [PATCH 1/6] Add spidev to the default lime configuration
+
+Because we have a spidev device.
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 12 ++++++++++++
+ drivers/spi/spidev.c                           |  1 +
+ 2 files changed, 13 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 75742f8..9a2e6dd 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -98,6 +98,18 @@
+ 			status = "okay";
+ 		};
+ 
++		spi2: spi@01c17000 {
++			pinctrl-names = "default";
++			pinctrl-0 = <&spi2_pins_b>;
++			status = "okay";
++
++			spidev@0x00 {
++				compatible = "linux,spidev";
++				spi-max-frequency = <1000000>;
++				reg = <0>;
++			};
++		};
++
+ 		usbphy: phy@01c13400 {
+ 			usb1_vbus-supply = <&reg_usb1_vbus>;
+ 			usb2_vbus-supply = <&reg_usb2_vbus>;
+diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
+index 4eb7a98..37c8492 100644
+--- a/drivers/spi/spidev.c
++++ b/drivers/spi/spidev.c
+@@ -760,6 +760,7 @@ static int spidev_remove(struct spi_device *spi)
+ 
+ static const struct of_device_id spidev_dt_ids[] = {
+ 	{ .compatible = "rohm,dh2228fv" },
++	{ .compatible = "linux,spidev" },
+ 	{},
+ };
+ 
+-- 
+1.8.3.1
+

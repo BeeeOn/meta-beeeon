@@ -1,0 +1,57 @@
+From c41b0d6de57c5853ec1c48a517ffb93d8bdb4dc1 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Thu, 13 Nov 2014 15:37:56 +0100
+Subject: [PATCH 3/6] Make BTN_OL working at least with polling driver.
+
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 0a69016..071ca78 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -156,6 +156,7 @@
+ 			btn_pins_olinuxinolime: btn_pins@0 {
+ 				allwinner,pins = "PI18";
+ 				allwinner,function = "gpio_in";
++				allwinner,drive = <0>;
+ 				allwinner,pull = <0>;
+ 			};
+ 		};
+@@ -198,23 +199,29 @@
+ 			label = "a10-olinuxino-lime:green:usr";
+ 			gpios = <&pio 7 2 GPIO_ACTIVE_HIGH>;
+ 			default-state = "on";
++			linux,default-trigger = "heartbeat";
+ 		};
+ 
+ 		pan {
+-			label = "a10-olinuxino-lime:pancoordinator:usr";
++			label = "a10-olinuxino-lime:green:LED1_OL";
+ 			gpios = <&pio 8 0 0>;
+ 			default-state = "on";
+ 		};
+ 	};
+ 
+ 	gpio_keys {
+-		compatible = "gpio-keys";
++		/* TODO - interrupt version should be used, but it is not
++		   working with 3.15 kernel */
++		/* compatible = "gpio-keys"; */
++		compatible = "gpio-keys-polled";
++		poll-interval = <100>;
++
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&btn_pins_olinuxinolime>;
+ 
+ 		btn-ol {
+ 			label = "BTN_OL";
+-			gpios = <&pio 8 18 0>;
++			gpios = <&pio 8 18 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_F1>;
+ 		};
+ 	};
+-- 
+1.8.3.1
+

@@ -1,0 +1,30 @@
+From 8987e6f1af7ba552114886bbd43ff37fabdd7339 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Wed, 29 Apr 2015 19:25:36 +0200
+Subject: [PATCH] lime: interrupt variant of gpio keys is working in 4.0
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index e5b96a2..61842cc 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -234,11 +234,7 @@
+ 	};
+ 
+ 	gpio_keys {
+-		/* TODO - interrupt version should be used, but it is not
+-		   working with 3.15 kernel */
+-		/* compatible = "gpio-keys"; */
+-		compatible = "gpio-keys-polled";
+-		poll-interval = <100>;
++		compatible = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&btn_pins_olinuxinolime>;
+-- 
+1.8.3.1
+
