@@ -20,6 +20,8 @@ SRC_URI += "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.gi
         file://0005-lime-add-nodes-for-i2c-1-and-eeproms.patch \
         file://0006-lime-remove-eeprom-definition-from-dts.patch \
         file://0007-lime-interrupt-variant-of-gpio-keys-is-working-in-4..patch \
+        file://0010-lime-WIP-on-Adapter-1.2.patch \
+        file://0011-lime-use-gpio-chipselect-for-pan-radio.patch \
         "
 
 S = "${WORKDIR}/git"

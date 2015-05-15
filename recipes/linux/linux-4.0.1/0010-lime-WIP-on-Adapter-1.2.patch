@@ -1,0 +1,105 @@
+From 8ae77e6993ec8566cad4c7ed96831112eb0f5fc4 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Mon, 4 May 2015 15:48:43 +0200
+Subject: [PATCH] lime: WIP on Adapter 1.2
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 39 ++++++++++++++++++++------
+ 1 file changed, 30 insertions(+), 9 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 61842cc..e3f9e9e 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -101,7 +101,7 @@
+ 
+ 		spi0: spi@01c05000 {
+ 			pinctrl-names = "default";
+-			pinctrl-0 = <&spi0_pins_a>;
++			pinctrl-0 = <&spi0_pins_a_full>;
+ 			status = "okay";
+ 
+ 			spidev@0x00 {
+@@ -109,6 +109,12 @@
+ 				spi-max-frequency = <1000000>;
+ 				reg = <0>;
+ 			};
++
++			spidev@0x01 {
++				compatible = "linux,spidev";
++				spi-max-frequency = <1000000>;
++				reg = <1>;
++			};
+ 		};
+ 
+ 		usbphy: phy@01c13400 {
+@@ -147,17 +153,25 @@
+ 			};
+ 
+ 			led_pins_olinuxinolime: led_pins@0 {
+-				allwinner,pins = "PH2", "PI0";
++				/* allwinner,pins = "PH2", "PI0"; */
++				allwinner,pins = "PH2";
+ 				allwinner,function = "gpio_out";
+ 				allwinner,drive = <SUN4I_PINCTRL_20_MA>;
+ 				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
+ 			};
+ 
+ 			btn_pins_olinuxinolime: btn_pins@0 {
+-				allwinner,pins = "PI18";
++				allwinner,pins = "PI15", "PI17";
+ 				allwinner,function = "gpio_in";
+-				allwinner,drive = <0>;
+-				allwinner,pull = <0>;
++				allwinner,drive = <SUN4I_PINCTRL_10_MA>;
++				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
++			};
++
++			spi0_pins_a_full: spi0@0 {
++				allwinner,pins = "PI10", "PI11", "PI12", "PI13", "PI14";
++				allwinner,function = "spi0";
++				allwinner,drive = <SUN4I_PINCTRL_10_MA>;
++				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
+ 			};
+ 		};
+ 
+@@ -225,12 +239,13 @@
+ 			default-state = "on";
+ 			linux,default-trigger = "heartbeat";
+ 		};
+-
++/*
+ 		pan {
+ 			label = "a10-olinuxino-lime:green:LED1_OL";
+ 			gpios = <&pio 8 0 0>;
+ 			default-state = "on";
+ 		};
++*/
+ 	};
+ 
+ 	gpio_keys {
+@@ -239,11 +254,17 @@
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&btn_pins_olinuxinolime>;
+ 
+-		btn-ol {
+-			label = "BTN_OL";
+-			gpios = <&pio 8 18 GPIO_ACTIVE_LOW>;
++		btn-ol1 {
++			label = "BTN_OL1";
++			gpios = <&pio 8 17 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_F1>;
+ 		};
++
++		btn-ol2 {
++			label = "BTN_OL2";
++			gpios = <&pio 8 15 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_F5>;
++		};
+ 	};
+ 
+ 	reg_ahci_5v: ahci-5v {
+-- 
+1.8.3.1
+

@@ -1,0 +1,64 @@
+From 5c75cb82d953a4ae6400d2959f9c7dfe0b8c5b33 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Fri, 15 May 2015 12:13:26 +0200
+Subject: [PATCH] lime: use gpio chipselect for pan radio
+
+There is an issue with native chipselects. If they are used, short pulse
+on both chipselect lines are asserted before asserting one of them. This
+causes problem to our radio module.
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index e3f9e9e..0509a24 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -101,9 +101,11 @@
+ 
+ 		spi0: spi@01c05000 {
+ 			pinctrl-names = "default";
+-			pinctrl-0 = <&spi0_pins_a_full>;
++			pinctrl-0 = <&spi0_pins_a_cs_gpio>, <&spi0_pins_a_reduced>;
+ 			status = "okay";
+ 
++			cs-gpios = <&pio 8 10 GPIO_ACTIVE_HIGH>, <&pio 8 14 GPIO_ACTIVE_HIGH>;
++
+ 			spidev@0x00 {
+ 				compatible = "linux,spidev";
+ 				spi-max-frequency = <1000000>;
+@@ -167,12 +169,28 @@
+ 				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
+ 			};
+ 
+-			spi0_pins_a_full: spi0@0 {
++			/* Both #CS0 and #CS1 are pinmuxed */
++			spi0_pins_a_full: spi0_pins_full@0 {
+ 				allwinner,pins = "PI10", "PI11", "PI12", "PI13", "PI14";
+ 				allwinner,function = "spi0";
+ 				allwinner,drive = <SUN4I_PINCTRL_10_MA>;
+ 				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
+ 			};
++
++			/* No native #CS are used */
++			spi0_pins_a_reduced: spi0_pins_reduced@0 {
++				allwinner,pins = "PI11", "PI12", "PI13";
++				allwinner,function = "spi0";
++				allwinner,drive = <SUN4I_PINCTRL_10_MA>;
++				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
++			};
++
++			spi0_pins_a_cs_gpio: spi0_pins_cs_gpio@0 {
++				allwinner,pins = "PI10", "PI14";
++				allwinner,function = "gpio_out";
++				allwinner,drive = <SUN4I_PINCTRL_10_MA>;
++				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
++			};
+ 		};
+ 
+ 		uart0: serial@01c28000 {
+-- 
+1.8.3.1
+
