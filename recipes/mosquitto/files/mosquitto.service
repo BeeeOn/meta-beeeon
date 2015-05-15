@@ -1,0 +1,8 @@
+[Unit]
+Description=Mosquitto - MQTT broker
+
+[Service]
+ExecStart=/usr/sbin/mosquitto
+
+[Install]
+WantedBy=multi-user.target
