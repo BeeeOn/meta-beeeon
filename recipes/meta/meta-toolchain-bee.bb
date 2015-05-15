@@ -1,6 +1,6 @@
 require recipes-core/meta/meta-toolchain.bb
 
-PV = "0.5"
+PV = "0.6"
 
 # It seems that some OE bug is triggered when this prefix is redefined
 #SDK_NAME_PREFIX = "sdk-iot"

@@ -9,6 +9,10 @@ RDEPENDS_${PN} += " \
     systemd-dev \
     dbus-dev \
     dbus-glib-dev \
+    mosquitto-lib \
+    mosquitto-dev \
+    boost-dev \
+    python-dev \
 "
 
 inherit packagegroup

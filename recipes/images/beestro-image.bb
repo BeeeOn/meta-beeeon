@@ -8,6 +8,7 @@ CONMANPKGS ?= "connman connman-plugin-loopback connman-plugin-ethernet connman-p
 DEPENDS = "virtual/bootloader"
 
 IMAGE_INSTALL += " \
+        bash \
 	packagegroup-core-boot \
         kernel-modules \
         openssh-sshd openssh-ssh openssh-scp openssh-sftp openssh-sftp-server \
@@ -27,7 +28,7 @@ IMAGE_INSTALL += " \
         gcc \
         git \
         python python-modules python-pyspidev \
-        nano \
+        vim nano \
         which \
         short-commands \
         i2c-tools \
