@@ -3,8 +3,6 @@ DESCRIPTION = "Beestro image"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
 
-CONMANPKGS ?= "connman connman-plugin-loopback connman-plugin-ethernet connman-plugin-wifi"
-
 DEPENDS = "virtual/bootloader"
 
 IMAGE_INSTALL += " \
@@ -18,11 +16,11 @@ IMAGE_INSTALL += " \
         tzdata \
         htop rsync \
         iw wpa-supplicant \
-	${CONMANPKGS} \
 	opkg \
         iptables lsof screen socat sysstat \
         evtest devmem2 procps strace ldd \
         systemd systemd-machine-units udev \
+        systemd-network-conf \
         distro-feed-configs \
         e2fsprogs-mke2fs dosfstools sunxi-tools \
         gcc \
