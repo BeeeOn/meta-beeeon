@@ -3,6 +3,7 @@ Description=Mosquitto - MQTT broker
 
 [Service]
 ExecStart=/usr/sbin/mosquitto
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
        file://edl-v10;md5=c09f121939f063aeb5235972be8c722c \
        "
 DEPENDS = "openssl util-linux libwebsockets"
-PR = "r2"
+PR = "r5"
 
 SRC_URI = " \
         http://mosquitto.org/files/source/mosquitto-${PV}.tar.gz \
@@ -17,11 +17,6 @@ SRC_URI[md5sum] = "2c3b19686c04849ed4b183c63149bfe1"
 SRC_URI[sha256sum] = "5ebc3800a0018bfbec62dcc3748fb29f628df068acd39c62c4ef651d9276647e"
 
 SYSTEMD_SERVICE_${PN} = "mosquitto.service"
-
-# TODO
-# lib_package.bbclass
-# debian.bbclass
-# ~/oe/meta/recipes-support/attr/ea-acl.inc
 
 inherit cmake systemd useradd
 
@@ -41,11 +36,18 @@ do_install_append () {
 }
 
 PACKAGE_BEFORE_PN =+ " \
-        ${PN}-lib \
-        ${PN}-tools \
+        lib${BPN} \
+        ${PN}-clients \
         "
 
-FILES_${PN}-lib += "${libdir}"
-FILES_${PN}-tools += "${bindir}"
+FILES_lib${BPN} += "${libdir}/lib*${SOLIBS}"
+FILES_${PN}-clients += "${bindir}/mosquitto_sub ${bindir}/mosquitto_pub"
+
+LEAD_SONAME = "libmosquitto.so"
 
 CONFFILES_${PN} += "${sysconfdir}/mosquitto/mosquitto.conf"
+
+RCONFLICTS_${PN}-lib = "lib${BPN}"
+RCONFLICTS_${PN}-tools = "${PN}-clients"
+RREPLACES_${PN}-lib = "lib${BPN}"
+RREPLACES_${PN}-tools = "${PN}-clients"
