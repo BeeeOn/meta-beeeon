@@ -34,6 +34,8 @@ IMAGE_INSTALL += " \
         ethtool \
         openvpn \
         beeeon-adaapp \
+        mosquitto mosquitto-clients libmosquitto1 \
+        python-paho-mqtt \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
