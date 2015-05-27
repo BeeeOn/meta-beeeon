@@ -1,0 +1,40 @@
+From 7e0bd0ce478497bca7aefc8ce9c4954dd8cde371 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Wed, 27 May 2015 17:29:43 +0200
+Subject: [PATCH 14/15] lime: rename buttons and change codes
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 3ed8320..1356f42 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -308,16 +308,16 @@
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&btn_pins_olinuxinolime>;
+ 
+-		btn-ol1 {
+-			label = "BTN_OL1";
++		btn-pancoord-b1 {
++			label = "btn_pancoord_b1";
+ 			gpios = <&pio 8 17 GPIO_ACTIVE_LOW>;
+-			linux,code = <KEY_F1>;
++			linux,code = <KEY_F5>;
+ 		};
+ 
+-		btn-ol2 {
+-			label = "BTN_OL2";
++		btn-pancoord-b2 {
++			label = "btn_pancoord_b2";
+ 			gpios = <&pio 8 15 GPIO_ACTIVE_LOW>;
+-			linux,code = <KEY_F5>;
++			linux,code = <KEY_F1>;
+ 		};
+ 	};
+ 
+-- 
+1.8.3.1
+

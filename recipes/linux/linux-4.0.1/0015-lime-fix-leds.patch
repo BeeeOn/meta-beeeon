@@ -1,0 +1,60 @@
+From b4c827fbae4029dbbe607eb682212016d4c8acee Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Wed, 27 May 2015 18:03:30 +0200
+Subject: [PATCH 15/15] lime: fix leds
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 1356f42..bf4c3e0 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -50,6 +50,7 @@
+ #include "sunxi-common-regulators.dtsi"
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pwm/pwm.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/pinctrl/sun4i-a10.h>
+ 
+@@ -278,16 +279,16 @@
+ 
+ 		pancoord-red {
+ 			label = "pancoord:red:usr";
+-			gpios = <&pio 8 1 GPIO_ACTIVE_HIGH>;
+-			default-state = "on";
+-			linux,default-trigger = "default-on";
++			gpios = <&pio 8 2 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++			linux,default-trigger = "none";
+ 		};
+ 
+ 		pancoord-green {
+ 			label = "pancoord:green:usr";
+-			gpios = <&pio 8 2 GPIO_ACTIVE_HIGH>;
++			gpios = <&pio 8 1 GPIO_ACTIVE_HIGH>;
+ 			default-state = "off";
+-			linux,default-trigger = "default-on";
++			linux,default-trigger = "none";
+ 		};
+ 	};
+ 
+@@ -296,9 +297,11 @@
+ 
+ 		pancoord-blue {
+ 			label = "pancoord:blue:usr";
+-			pwms = <&pwm 0 10000000>;
++			pwms = <&pwm 1 1250000 PWM_POLARITY_INVERTED>;
+ 			pwm-names = "pancoord-blue-led";
+ 			max-brightness = <255>;
++			default-state = "off";
++			linux,default-trigger = "none";
+ 		};
+ 	};
+ 
+-- 
+1.8.3.1
+

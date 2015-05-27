@@ -1,0 +1,29 @@
+From 0412d24533cfe147806a201580c959154a6bf401 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Wed, 27 May 2015 12:17:50 +0200
+Subject: [PATCH 12/13] lime: add pressure sensor
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 0509a24..44151fa 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -236,6 +236,11 @@
+ 				reg = <0x6f>;
+ 			};
+ 
++			bmp180_pressure: pressure@77 {
++				compatible = "bosch,bmp085";
++				reg = <0x77>;
++			};
++
+ 			/* This EEPROM is accessed using i2c-tools */
+ 			/*
+ 			mcp7940x_eeprom: eeprom@57 {
+-- 
+1.8.3.1
+

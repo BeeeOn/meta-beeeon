@@ -1,0 +1,89 @@
+From 47969a6e1ef9436d39a47d3794fb5f333d9f463d Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Wed, 27 May 2015 12:47:03 +0200
+Subject: [PATCH 13/13] lime: add adapter v1.2 leds
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 45 ++++++++++++++++++++++----
+ 1 file changed, 38 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+index 44151fa..3ed8320 100644
+--- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+@@ -162,6 +162,13 @@
+ 				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
+ 			};
+ 
++			led_pins_pancoord: led_pins_pan@0 {
++				allwinner,pins = "PI1", "PI2";
++				allwinner,function = "gpio_out";
++				allwinner,drive = <SUN4I_PINCTRL_20_MA>;
++				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
++			};
++
+ 			btn_pins_olinuxinolime: btn_pins@0 {
+ 				allwinner,pins = "PI15", "PI17";
+ 				allwinner,function = "gpio_in";
+@@ -249,26 +256,50 @@
+ 			};
+ 			*/
+ 		};
++
++		pwm: pwm@01c20e00 {
++			pinctrl-names = "default";
++			pinctrl-0 = <&pwm1_pins_a>;
++			status = "okay";
++		};
+ 	};
+ 
+ 	leds {
+ 		compatible = "gpio-leds";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&led_pins_olinuxinolime>;
++		pinctrl-0 = <&led_pins_olinuxinolime>, <&led_pins_pancoord>;
+ 
+-		green {
++		lime-green {
+ 			label = "a10-olinuxino-lime:green:usr";
+ 			gpios = <&pio 7 2 GPIO_ACTIVE_HIGH>;
+ 			default-state = "on";
+ 			linux,default-trigger = "heartbeat";
+ 		};
+-/*
+-		pan {
+-			label = "a10-olinuxino-lime:green:LED1_OL";
+-			gpios = <&pio 8 0 0>;
++
++		pancoord-red {
++			label = "pancoord:red:usr";
++			gpios = <&pio 8 1 GPIO_ACTIVE_HIGH>;
+ 			default-state = "on";
++			linux,default-trigger = "default-on";
++		};
++
++		pancoord-green {
++			label = "pancoord:green:usr";
++			gpios = <&pio 8 2 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++			linux,default-trigger = "default-on";
++		};
++	};
++
++	pwmleds {
++		compatible = "pwm-leds";
++
++		pancoord-blue {
++			label = "pancoord:blue:usr";
++			pwms = <&pwm 0 10000000>;
++			pwm-names = "pancoord-blue-led";
++			max-brightness = <255>;
+ 		};
+-*/
+ 	};
+ 
+ 	gpio_keys {
+-- 
+1.8.3.1
+
