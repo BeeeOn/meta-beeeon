@@ -33,6 +33,7 @@ IMAGE_INSTALL += " \
         eeprom-get-mac bee-macchange \
         ethtool \
         openvpn \
+        openvpn-beeeon \
         beeeon-adaapp \
         beeeon-adaapp-support \
         mosquitto mosquitto-clients libmosquitto \

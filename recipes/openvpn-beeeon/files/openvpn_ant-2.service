@@ -1,0 +1,14 @@
+[Unit]
+Description=OpenVPN client
+After=network.target network-online.target
+Wants=network.target network-online.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/sbin/openvpn /etc/openvpn/vpn_client_ant-2.conf
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
