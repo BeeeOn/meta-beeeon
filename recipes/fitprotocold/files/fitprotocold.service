@@ -1,0 +1,17 @@
+[Unit]
+Description=BeeeOn PAN Daemon
+After=mosquitto.service
+Requires=mosquitto.service
+Before=beeeon-adaapp.service
+
+[Service]
+TimeoutStartSec=30
+TimeoutStopSec=20
+Nice=-7
+# That sleep should be fixed with mosquitto startup signalling
+ExecStart=/bin/sh -c "sleep 3; /usr/bin/fitprotocold"
+RestartSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
