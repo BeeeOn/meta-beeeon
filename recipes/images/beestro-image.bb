@@ -28,7 +28,6 @@ IMAGE_INSTALL += " \
         python python-modules python-pyspidev \
         vim nano \
         which \
-        short-commands \
         i2c-tools \
         eeprom-get-mac bee-macchange \
         ethtool \
