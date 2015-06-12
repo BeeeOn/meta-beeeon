@@ -31,5 +31,6 @@ CONFFILES_${PN} += "\
 "
 
 RDEPENDS_${PN} = "libpoco libmosquitto"
+RREPLACES_${PN} = "short-commands"
 
 inherit cmake systemd
