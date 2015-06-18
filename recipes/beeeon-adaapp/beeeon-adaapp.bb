@@ -2,10 +2,10 @@ SUMMARY = "BeeeOn Adapter Application - central application of an adapter"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
 DEPENDS = "libpoco mosquitto"
-PV = "2.02.12-fake"
+PV = "2.02.15-fake"
 
-SRCREV = "8c84384862c5f776d66c952b55ba337f559a1735"
-SRC_URI = "${IOT_GIT}/adaapp.git;branch=master;${IOT_GIT_OPTS}"
+SRCREV = "fa86a85623ad7f38d513faf435b35f5052bf9609"
+SRC_URI = "${IOT_GIT}/adaapp.git;branch=devel;${IOT_GIT_OPTS}"
 
 S = "${WORKDIR}/git"
 
