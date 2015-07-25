@@ -1,5 +1,4 @@
-PACKAGECONFIG[timedated] = "--enable-timedated,--disable-timedated"
-PACKAGECONFIG += "xz networkd resolved timedated"
+PACKAGECONFIG += "xz networkd resolved microhttpd"
 
 do_install_append() {
         # XXX Watchdog sec should be revised
