@@ -1,11 +1,11 @@
 # Copied from meta-openembedded/meta-oe (we want to enable only a subset of architectures)
 DESCRIPTION = "Configuration files for online package repositories aka feeds"
-PR = "r3"
+PR = "r4"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
 DISTRO_FEED_PREFIX = "remote-beestro"
-DISTRO_FEED_URI = "http://www.fit.vutbr.cz/~inovottom/oe/feed/"
+DISTRO_FEED_URI = "http://cloud.beeeon.com/feed/"
 DISTRO_FEED_ARCHS = "all armv7a-vfp-neon ${MACHINE_ARCH}"
 
 do_compile() {
