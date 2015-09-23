@@ -16,6 +16,7 @@ IMAGE_INSTALL += " \
         tzdata \
         htop rsync \
         iw wpa-supplicant \
+        hostapd \
 	opkg \
         iptables lsof screen socat sysstat \
         evtest devmem2 procps strace ldd \
