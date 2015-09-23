@@ -8,7 +8,7 @@ COMPATIBLE_MACHINE = "(olinuxino-a10)"
 KERNEL_DEVICETREE_olinuxino-a10 = "sun4i-a10-olinuxino-lime.dtb"
 
 PV = "4.0.1"
-PR = "r2"
+PR = "r3"
 
 SRCREV = "1b0ebf2964aa28a822f3551b532c162c672ac2d0"
 
