@@ -7,14 +7,13 @@ LIC_FILES_CHKSUM = " \
        file://edl-v10;md5=c09f121939f063aeb5235972be8c722c \
        "
 DEPENDS = "openssl util-linux libwebsockets"
-PR = "r5"
 
 SRC_URI = " \
         http://mosquitto.org/files/source/mosquitto-${PV}.tar.gz \
         file://mosquitto.service \
         "
-SRC_URI[md5sum] = "2c3b19686c04849ed4b183c63149bfe1"
-SRC_URI[sha256sum] = "5ebc3800a0018bfbec62dcc3748fb29f628df068acd39c62c4ef651d9276647e"
+SRC_URI[md5sum] = "89a57f11cdfec140fa21fe3d4493b2ca"
+SRC_URI[sha256sum] = "c643c7123708aadcd29287dda7b5ce7c910f75b02956a8fc4fe65ad2ea767a5f"
 
 SYSTEMD_SERVICE_${PN} = "mosquitto.service"
 
