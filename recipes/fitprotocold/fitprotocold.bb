@@ -1,7 +1,7 @@
 SUMMARY = "BeeeOn PAN Daemon"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
-PV = "0.6-fake"
+PV = "0.7-fake"
 
 SRC_URI = "\
     file://fitprotocold \
@@ -20,6 +20,6 @@ do_install () {
     install -m 0755 ${S}/fitprotocold ${D}${bindir}
 }
 
-RDEPENDS_${PN} = "libmosquitto glib-2.0"
+RDEPENDS_${PN} = "libmosquitto libpoco glib-2.0"
 
 inherit systemd
