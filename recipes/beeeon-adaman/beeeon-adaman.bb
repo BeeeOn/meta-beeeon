@@ -3,24 +3,28 @@
 SUMMARY = "Adapter Manager - handling of adapter software upgrades"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
-# poco? ...
-#DEPENDS = ""
+DEPENDS = "libpoco"
 PV = "1.0"
 
-SRCREV = "c3ba27064b33ebede52791f49c10685a89ae872f"
+SRCREV = "v${PV}"
 SRC_URI = "${IOT_GIT}/adaman-client.git;branch=master;${IOT_GIT_OPTS}"
 
 S = "${WORKDIR}/git"
 
+SYSTEMD_SERVICE_${PN} = "${PN}.service"
+
+inherit cmake systemd
+
 EXTRA_OECMAKE = " \
-        -DCMAKE_INSTALL_PREFIX=/home/beeeon \
+        -DCMAKE_INSTALL_PREFIX=/ \
         "
 
-FILES_${PN} += "/home/beeeon"
-FILES_${PN}-dbg += "/home/beeeon/bin/.debug"
+do_install_append () {
+    install -d ${D}${systemd_unitdir}/system
+    install -m 0644 ${S}/etc/systemd/system/*.service ${D}${systemd_unitdir}/system
 
-CONFFILES_${PN} += "/home/beeeon/etc/*"
+    # FIXME This is fixed in next version
+    rm -r ${D}/etc/beeeon/systemd
+}
 
-RDEPENDS_${PN} = "libpoco"
-
-inherit cmake
+CONFFILES_${PN} += "/etc/*"
