@@ -4,7 +4,7 @@ SUMMARY = "Adapter Manager - handling of adapter software upgrades"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
 DEPENDS = "libpoco"
-PV = "1.0"
+PV = "1.0.1"
 
 SRCREV = "v${PV}"
 SRC_URI = "${IOT_GIT}/adaman-client.git;branch=master;${IOT_GIT_OPTS}"
