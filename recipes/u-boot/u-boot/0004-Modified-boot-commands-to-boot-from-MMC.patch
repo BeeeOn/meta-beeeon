@@ -1,0 +1,52 @@
+From 32ad5104ad4dac23a9eb27c20bfc18acb6af17ca Mon Sep 17 00:00:00 2001
+From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+Date: Mon, 29 Jun 2015 20:09:06 +0200
+Subject: [PATCH 4/9] Modified boot commands to boot from MMC
+
+Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+---
+ include/config_distro_bootcmd.h | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/include/config_distro_bootcmd.h b/include/config_distro_bootcmd.h
+index 3a360ca4..7a7ae96 100644
+--- a/include/config_distro_bootcmd.h
++++ b/include/config_distro_bootcmd.h
+@@ -61,7 +61,7 @@
+ #endif
+ 
+ #ifdef CONFIG_CMD_MMC
+-#define BOOTENV_SHARED_MMC	BOOTENV_SHARED_BLKDEV(mmc)
++#define BOOTENV_SHARED_MMC	BOOTENV_SHARED_BLKDEV_MMC(mmc)
+ #define BOOTENV_DEV_MMC		BOOTENV_DEV_BLKDEV
+ #define BOOTENV_DEV_NAME_MMC	BOOTENV_DEV_NAME_BLKDEV
+ #else
+@@ -174,7 +174,7 @@
+ #define BOOTENV_DEV_NAME(devtypeu, devtypel, instance) \
+ 	BOOTENV_DEV_NAME_##devtypeu(devtypeu, devtypel, instance)
+ #define BOOTENV_BOOT_TARGETS \
+-	"boot_targets=" BOOT_TARGET_DEVICES(BOOTENV_DEV_NAME) "\0"
++	"boot_targets=mmc0\0"
+ 
+ #define BOOTENV_DEV(devtypeu, devtypel, instance) \
+ 	BOOTENV_DEV_##devtypeu(devtypeu, devtypel, instance)
+@@ -221,7 +221,6 @@
+ 	"scan_dev_for_boot="                                              \
+ 		"echo Scanning ${devtype} ${devnum}:${bootpart}...; "     \
+ 		"for prefix in ${boot_prefixes}; do "                     \
+-			"run scan_dev_for_extlinux; "                     \
+ 			"run scan_dev_for_scripts; "                      \
+ 		"done\0"                                                  \
+ 	\
+@@ -237,7 +236,7 @@
+ 	\
+ 	BOOT_TARGET_DEVICES(BOOTENV_DEV)                                  \
+ 	\
+-	"distro_bootcmd=" BOOTENV_SET_SCSI_NEED_INIT                      \
++	"distro_bootcmd="                                                 \
+ 		"for target in ${boot_targets}; do "                      \
+ 			"run bootcmd_${target}; "                         \
+ 		"done\0"
+-- 
+1.9.1
+

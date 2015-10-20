@@ -1,0 +1,26 @@
+From bc6921ed9a10d4c8d22e2ff836761a91f8a1ec63 Mon Sep 17 00:00:00 2001
+From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+Date: Mon, 29 Jun 2015 20:13:01 +0200
+Subject: [PATCH 8/9] Disabled I2C bus change messages
+
+Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+---
+ common/cmd_i2c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/cmd_i2c.c b/common/cmd_i2c.c
+index 1bc0db8..1c06daf 100644
+--- a/common/cmd_i2c.c
++++ b/common/cmd_i2c.c
+@@ -1768,7 +1768,7 @@ static int do_i2c_bus_num(cmd_tbl_t *cmdtp, int flag, int argc,
+ 			return -1;
+ 		}
+ #endif
+-		printf("Setting bus to %d\n", bus_no);
++
+ #ifdef CONFIG_DM_I2C
+ 		ret = cmd_i2c_set_bus_num(bus_no);
+ #else
+-- 
+1.9.1
+
