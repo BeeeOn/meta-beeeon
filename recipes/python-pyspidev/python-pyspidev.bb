@@ -1,15 +1,14 @@
-# FIXME This recipe is a big hack...
 DESCRIPTION = "This project contains a python module for interfacing with SPI devices from user space via the spidev linux kernel driver." 
 SECTION = "devel/python" 
-LICENSE = "Python-style" 
-LIC_FILES_CHKSUM = "file://README.md;md5=d493aa971ede72a37ddcac1801ed5793"
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=a23a74b3f4caf9616230789d94217acb"
 HOMEPAGE = "https://github.com/doceme/py-spidev" 
-PV = "master"
+PV = "1c713aaaad1f611d675d9188d2d5a6401fbb8843"
 
-S = "${WORKDIR}/py-spidev-master"
+S = "${WORKDIR}/py-spidev-${PV}"
 
-SRC_URI = "https://github.com/doceme/py-spidev/archive/master.zip"
-SRC_URI[md5sum] = "cfd7918c004ec052a0126151b66da589"
-SRC_URI[sha256sum] = "d2930eb09570c7877b500070009b38209580d22d520fb39cd79e8dbc3930e6ea"
+SRC_URI = "https://github.com/doceme/py-spidev/archive/${PV}.zip"
+SRC_URI[md5sum] = "58659c8a7913af57dc37599343db05cb"
+SRC_URI[sha256sum] = "0c86b6ba86d046fe7462612a858fe800f6a64bca432791b143e13fa25befc474"
 
 inherit setuptools  
