@@ -7,6 +7,7 @@ DEPENDS = "virtual/bootloader"
 
 IMAGE_INSTALL += " \
         bash \
+        bluez5 \
 	packagegroup-core-boot \
         kernel-modules \
         openssh-sshd openssh-ssh openssh-scp openssh-sftp openssh-sftp-server \
