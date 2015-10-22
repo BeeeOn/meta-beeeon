@@ -1,0 +1,40 @@
+From 0ad1b452e1f59f90bffea441364c02b0596af004 Mon Sep 17 00:00:00 2001
+From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+Date: Sun, 23 Aug 2015 18:51:08 +0200
+Subject: [PATCH] Modified default memory layout to force normal boot for now
+
+Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+---
+ common/cmd_mem.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/common/cmd_mem.c b/common/cmd_mem.c
+index ec0ee7b..e52e1d3 100644
+--- a/common/cmd_mem.c
++++ b/common/cmd_mem.c
+@@ -11,6 +11,13 @@
+  * Copied from FADS ROM, Dan Malek (dmalek@jlc.net)
+  */
+ 
++/*
++ * Added custom memory functions for Beee-On
++ *
++ * Matej Postolka, <xposto02@stud.fit.vutbr.cz>
++ *
++ */
++
+ #include <common.h>
+ #include <bootretry.h>
+ #include <cli.h>
+@@ -173,7 +180,7 @@ static int do_mem_init(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[]
+ 	ulong addr = 0;
+ 
+ 	// Default SRAM layout array, refer to wiki for more info
+-	char data[] = {0xa5, 0x01, 0x04, 0x00, 0x00, 0x00, 0x00, 0x02, 0x01, 0x01, 0x03, 0x04, 0x05, 0x00, 0x00, 0x00, 0x04, 0x01, 0x00, 0xff};
++	char data[] = {0xa5, 0x01, 0x04, 0x00, 0x00, 0x00, 0x00, 0x02, 0x01, 0x01, 0x03, 0x04, 0x05, 0x00, 0x00, 0x00, 0x04, 0x01, 0x01, 0xff};
+ 
+ 	addr = simple_strtoul(argv[1], NULL, 16);
+ 
+-- 
+1.9.1
+

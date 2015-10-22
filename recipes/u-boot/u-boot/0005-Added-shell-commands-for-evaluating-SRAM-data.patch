@@ -1,0 +1,52 @@
+From 27b30ab353ebf5877b9b35cefa57c06435f9a2c6 Mon Sep 17 00:00:00 2001
+From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+Date: Mon, 29 Jun 2015 20:09:58 +0200
+Subject: [PATCH 5/9] Added shell commands for evaluating SRAM data
+
+Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+---
+ include/config_distro_bootcmd.h | 25 ++++++++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/include/config_distro_bootcmd.h b/include/config_distro_bootcmd.h
+index 7a7ae96..540a8f6 100644
+--- a/include/config_distro_bootcmd.h
++++ b/include/config_distro_bootcmd.h
+@@ -185,10 +185,33 @@
+ 	BOOTENV_SHARED_SATA \
+ 	BOOTENV_SHARED_SCSI \
+ 	BOOTENV_SHARED_IDE \
+-	"boot_prefixes=/ /boot/\0" \
++	"boot_prefixes=/\0" \
+ 	"boot_scripts=boot.scr.uimg boot.scr\0" \
+ 	"boot_script_dhcp=boot.scr.uimg\0" \
+ 	BOOTENV_BOOT_TARGETS \
++	BOOTENV_LEGACY_ZIMAGE \
++	\
++	"read_sram="							  \
++		"i2c dev $i2c_busnum; "					  \
++		"i2c read $i2c_sram_addr $i2c_sram_offset "		  \
++		"$i2c_sram_count $bootcounter_addr_r\0"			  \
++	\
++	"write_sram="							  \
++		"i2c dev $i2c_busnum; "					  \
++		"i2c write $bootcounter_addr_r $i2c_sram_addr "		  \
++		"$i2c_sram_offset $i2c_sram_count\0"			  \
++	\
++	"increment_sram="						  \
++		"run read_sram; "					  \
++		"minc $bootcounter_addr_r; "				  \
++		"run write_sram\0"					  \
++	\
++	"initialize_sram="						  \
++		"i2c dev $i2c_busnum; "					  \
++		"run read_sram; "					  \
++		"minit $bootcounter_addr_r; "				  \
++		"i2c write $bootcounter_addr_r $i2c_sram_addr "		  \
++		"$i2c_sram_offset $i2c_sram_count\0"			  \
+ 	\
+ 	"boot_extlinux="                                                  \
+ 		"sysboot ${devtype} ${devnum}:${bootpart} any "           \
+-- 
+1.9.1
+

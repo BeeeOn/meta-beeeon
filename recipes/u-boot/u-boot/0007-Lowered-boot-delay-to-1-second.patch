@@ -1,18 +1,18 @@
-From 9fb9756f38fc70f39e9f4153045cd7afea8e2efe Mon Sep 17 00:00:00 2001
-From: Tomas Novotny <tomas@novotny.cz>
-Date: Tue, 13 Jan 2015 15:22:48 +0100
-Subject: [PATCH 2/2] sunxi: bee: Lower bootdelay
+From 17550780ffad616aa57b45b393d453c2225b900f Mon Sep 17 00:00:00 2001
+From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+Date: Mon, 29 Jun 2015 20:12:23 +0200
+Subject: [PATCH 7/9] Lowered boot delay to 1 second
 
-Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---
  include/config_distro_defaults.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/include/config_distro_defaults.h b/include/config_distro_defaults.h
-index 1ecc0bb..40858d0 100644
+index bd8fbca..83cfc46 100644
 --- a/include/config_distro_defaults.h
 +++ b/include/config_distro_defaults.h
-@@ -45,7 +45,7 @@
+@@ -54,7 +54,7 @@
  
  #define CONFIG_CMDLINE_EDITING
  #define CONFIG_AUTO_COMPLETE
@@ -22,5 +22,5 @@ index 1ecc0bb..40858d0 100644
  #define CONFIG_MENU
  #define CONFIG_DOS_PARTITION
 -- 
-1.8.3.1
+1.9.1
 
