@@ -43,6 +43,7 @@ IMAGE_INSTALL += " \
         fitprotocold \
         mosquitto mosquitto-clients libmosquitto \
         python-paho-mqtt \
+        golden-firmware \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
