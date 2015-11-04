@@ -44,6 +44,8 @@ IMAGE_INSTALL += " \
         mosquitto mosquitto-clients libmosquitto \
         python-paho-mqtt \
         golden-firmware \
+        oracle-jse-jre \
+        openhab \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
