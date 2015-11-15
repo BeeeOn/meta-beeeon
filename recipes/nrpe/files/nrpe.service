@@ -1,0 +1,12 @@
+[Unit]
+Description=NRPE (Nagios Remote Plugin Executor)
+After=network.target
+Requires=network.target
+
+[Service]
+Type=forking
+ExecStart=@SBINDIR@/nrpe -c @SYSCONFDIR@/nagios/nrpe.cfg -d
+PIDFile=/run/nrpe.pid
+
+[Install]
+WantedBy=multi-user.target

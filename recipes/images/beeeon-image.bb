@@ -46,6 +46,7 @@ IMAGE_INSTALL += " \
         golden-firmware \
         oracle-jse-jre \
         openhab \
+        nrpe \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
