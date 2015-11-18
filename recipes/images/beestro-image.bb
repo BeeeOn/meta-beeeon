@@ -60,12 +60,15 @@ IMAGE_ROOTFS_EXTRA_SPACE = "192000"
 
 export IMAGE_BASENAME = "beestro-image"
 
-ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;"
+ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;disable_beeeon_adaapp;"
 set_root_passwd() {
    sed 's%^root:[^:]*:%root:\$6\$xUeDXeRtnp/Vcez\$S4FUy5qNkhDstvUWhEoRByiEyeJtbRtkW5yq.HdNIgN699H0QtU3JqXl9cHKZeeXRdosnS.pErv7D4eS1bl.A/:%' \
        < ${IMAGE_ROOTFS}/etc/shadow \
        > ${IMAGE_ROOTFS}/etc/shadow.new;
    mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
+}
+disable_beeeon_adaapp() {
+    rm ${IMAGE_ROOTFS}/etc/systemd/system/multi-user.target.wants/beeeon-adaapp.service
 }
 
 inherit image
