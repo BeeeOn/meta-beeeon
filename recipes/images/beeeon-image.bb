@@ -1,4 +1,4 @@
-DESCRIPTION = "Beestro image"
+DESCRIPTION = "BeeeOn image"
 
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
@@ -60,7 +60,7 @@ IMAGE_FEATURES += "package-management"
 #IMAGE_ROOTFS_SIZE = "102400"
 IMAGE_ROOTFS_EXTRA_SPACE = "192000"
 
-export IMAGE_BASENAME = "beestro-image"
+export IMAGE_BASENAME = "beeeon-image"
 
 ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;disable_beeeon_adaapp;"
 set_root_passwd() {
