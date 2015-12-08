@@ -47,6 +47,8 @@ IMAGE_INSTALL += " \
         oracle-jse-jre \
         openhab \
         nrpe \
+        nagios-plugins \
+        nagios-plugins-beeeon \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
