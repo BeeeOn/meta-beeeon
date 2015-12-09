@@ -1,3 +1,4 @@
+# Recipe is customized for BeeeOn project
 SUMMARY = "NRPE remote plugin executor"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "\
@@ -9,6 +10,7 @@ DEPENDS = "openssl tcp-wrappers"
 
 SRC_URI = "\
     http://heanet.dl.sourceforge.net/project/nagios/nrpe-2.x/nrpe-${PV}/nrpe-${PV}.tar.gz \
+    file://nrpe.cfg \
     file://nrpe.service \
     "
 
@@ -18,6 +20,7 @@ SRC_URI[sha256sum] = "66383b7d367de25ba031d37762d83e2b55de010c573009c6f58270b137
 inherit autotools systemd useradd
 
 SYSTEMD_SERVICE_${PN} = "nrpe.service"
+SYSTEMD_AUTO_ENABLE = "disable"
 
 USERADD_PACKAGES = "${PN}"
 USERADD_PARAM_${PN} = "--system --shell ${base_sbindir}/nologin --user-group nagios"
@@ -37,10 +40,7 @@ do_install() {
     install -m 0755 ${B}/src/check_nrpe ${D}${sbindir}/check_nrpe
 
     install -m 0755 -d ${D}${sysconfdir}/nagios
-    install -m 0644 ${B}/sample-config/nrpe.cfg ${D}${sysconfdir}/nagios/nrpe.cfg
-
-    # Change pid directory according to the FHS 3.0
-    sed -i -e 's,^\(pid_file=\).*,\1/run/nrpe.pid,' ${D}${sysconfdir}/nagios/nrpe.cfg
+    install -m 0644 ${WORKDIR}/nrpe.cfg ${D}${sysconfdir}/nagios/nrpe.cfg
 
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/nrpe.service ${D}${systemd_system_unitdir}
@@ -50,4 +50,5 @@ do_install() {
 
 CONFFILES_${PN} += "${sysconfdir}/nagios/nrpe.cfg"
 
-RDEPENDS_${PV} = "openssl tcp-wrappers"
+RDEPENDS_${PN} = "openssl tcp-wrappers"
+RRECOMMENDS_${PN} = "nagios-plugins nagios-plugins-beeeon"
