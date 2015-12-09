@@ -31,6 +31,7 @@ IMAGE_INSTALL += " \
         git \
         python python-modules python-pyspidev \
         vim nano \
+        mc \
         which \
         i2c-tools \
         eeprom-get-mac bee-macchange \
