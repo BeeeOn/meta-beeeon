@@ -12,8 +12,8 @@ SRC_URI = " \
         http://mosquitto.org/files/source/mosquitto-${PV}.tar.gz \
         file://mosquitto.service \
         "
-SRC_URI[md5sum] = "89a57f11cdfec140fa21fe3d4493b2ca"
-SRC_URI[sha256sum] = "c643c7123708aadcd29287dda7b5ce7c910f75b02956a8fc4fe65ad2ea767a5f"
+SRC_URI[md5sum] = "65667219196433292f373a34774d02af"
+SRC_URI[sha256sum] = "b432e19fee0c549f4a0fb0e866d1b6a897b38dbf1ddfda92bb43e2a24f01df66"
 
 SYSTEMD_SERVICE_${PN} = "mosquitto.service"
 
