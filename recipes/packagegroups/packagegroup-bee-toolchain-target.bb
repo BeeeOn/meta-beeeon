@@ -1,4 +1,4 @@
-SUMMARY = "Target packages for bee SDK"
+SUMMARY = "Target packages for BeeeOn SDK"
 
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
@@ -9,9 +9,8 @@ RDEPENDS_${PN} += " \
     systemd-dev \
     dbus-dev \
     dbus-glib-dev \
-    mosquitto-lib \
+    libmosquitto \
     mosquitto-dev \
-    boost-dev \
     python-dev \
 "
 
