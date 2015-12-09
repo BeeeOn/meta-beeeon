@@ -10,6 +10,8 @@ SRC_URI = "${IOT_GIT}/openembedded/nrpe-plugins.git;branch=master;${IOT_GIT_OPTS
 
 S = "${WORKDIR}/git"
 
+inherit allarch
+
 do_install() {
 	install -d ${D}${libdir}/nagios
 	install -m 0755 ${S}/check_linux_memory ${D}${libdir}/nagios/check_linux_memory
