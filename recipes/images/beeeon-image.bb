@@ -27,8 +27,6 @@ IMAGE_INSTALL += " \
         systemd-network-conf \
         distro-feed-configs \
         e2fsprogs-mke2fs dosfstools sunxi-tools \
-        gcc \
-        git \
         python python-modules python-pyspidev \
         vim nano \
         mc \
