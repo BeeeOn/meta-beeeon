@@ -43,8 +43,6 @@ IMAGE_INSTALL += " \
         mosquitto mosquitto-clients libmosquitto \
         python-paho-mqtt \
         golden-firmware \
-        oracle-jse-jre \
-        openhab \
         nrpe \
         nagios-plugins \
         nagios-plugins-beeeon \
