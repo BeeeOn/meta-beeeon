@@ -1,15 +1,15 @@
-From bb7ca0424da050803dc0eccfa8084693b633c2b2 Mon Sep 17 00:00:00 2001
+From 0d82b04e439cceec903d919f0ad65ed299f5571f Mon Sep 17 00:00:00 2001
 From: Tomas Novotny <tomas@novotny.cz>
-Date: Thu, 19 Nov 2015 18:03:34 +0100
+Date: Mon, 14 Dec 2015 15:40:22 +0100
 Subject: [PATCH] ini: configure for production use
 
 Signed-off-by: Tomas Novotny <tomas@novotny.cz>
 ---
- etc/AdaApp.ini | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ etc/AdaApp.ini | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
 diff --git a/etc/AdaApp.ini b/etc/AdaApp.ini
-index e92a501..a542f2c 100644
+index 9368b0b..431cf2e 100644
 --- a/etc/AdaApp.ini
 +++ b/etc/AdaApp.ini
 @@ -1,12 +1,10 @@
@@ -18,7 +18,7 @@ index e92a501..a542f2c 100644
 -id = 0x11
 +debug = false
  
- ; konfigurace pripojeni k serveru
+ ; Server connection
  [Server]
 -;port = 9092
 -port = 7080
@@ -28,11 +28,6 @@ index e92a501..a542f2c 100644
  listen_port = 7978
  
  [Versions]
-@@ -42,4 +40,3 @@ enable = true
- time = 900
- interval = 60
- probes = 8
--
 -- 
 1.8.3.1
 
