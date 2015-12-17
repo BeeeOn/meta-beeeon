@@ -2,7 +2,7 @@ SUMMARY = "BeeeOn Adapter Application - central application of an adapter"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
 DEPENDS = "libpoco mosquitto"
-PV = "1.4"
+PV = "1.4.1"
 
 SRCREV = "v${PV}"
 SRC_URI = "\
