@@ -46,6 +46,7 @@ IMAGE_INSTALL += " \
         nrpe \
         nagios-plugins \
         nagios-plugins-beeeon \
+        python-pyserial \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
