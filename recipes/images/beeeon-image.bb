@@ -47,6 +47,7 @@ IMAGE_INSTALL += " \
         nagios-plugins \
         nagios-plugins-beeeon \
         python-pyserial \
+        openhab \
 "
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
