@@ -1,16 +1,18 @@
 SUMMARY = "BeeeOn Adapter Application - central application of an adapter"
-LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=e2c6cbed4654f882832b6d28c4454eca"
 DEPENDS = "libpoco mosquitto"
-PV = "1.4.1"
+PV = "1.5"
 
 SRCREV = "v${PV}"
 SRC_URI = "\
-    ${IOT_GIT}/adaapp.git;branch=master;${IOT_GIT_OPTS} \
+    ${IOT_GIT}/adaapp-new.git;branch=master;${IOT_GIT_OPTS} \
     file://0001-ini-configure-for-production-use.patch \
     "
 
 S = "${WORKDIR}/git"
+
+inherit cmake systemd
 
 SYSTEMD_SERVICE_${PN} = "beeeon-adaapp.service"
 
@@ -44,5 +46,3 @@ CONFFILES_${PN} += "\
 
 RDEPENDS_${PN} = "libpoco libmosquitto"
 RREPLACES_${PN} = "short-commands"
-
-inherit cmake systemd
