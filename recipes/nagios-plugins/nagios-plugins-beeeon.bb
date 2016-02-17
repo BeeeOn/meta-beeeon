@@ -3,7 +3,7 @@ SUMMARY = "Custom Nagios plugins for BeeeOn"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
 
-PV = "1.0.2"
+PV = "1.0.3"
 SRCREV = "v${PV}"
 
 SRC_URI = "${IOT_GIT}/openembedded/nrpe-plugins.git;branch=master;${IOT_GIT_OPTS}"
@@ -22,4 +22,5 @@ FILES_${PN} = "${libdir}/nagios"
 
 RDEPENDS_${PN} = "bash bc sudo sudo-nagios-config"
 
+do_configure[noexec] = "1"
 do_compile[noexec] = "1"
