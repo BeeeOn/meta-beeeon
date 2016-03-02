@@ -1,12 +1,15 @@
 SUMMARY = "Custom Nagios plugins for BeeeOn"
-# FIXME
-LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
-
+LICENSE = "PD & Lunch"
+LIC_FILES_CHKSUM = "\
+    file://check_linux_memory;beginline=23;endline=24;md5=20b93567911c9d6e6466437d60ed7524 \
+    file://check_systemd;beginline=2;endline=6;md5=110362454ff54e2fd8261567002554e7 \
+"
+NO_GENERIC_LICENSE[Lunch] = "check_linux_memory"
 PV = "1.0.3"
-SRCREV = "v${PV}"
+PR = "r1"
 
-SRC_URI = "${IOT_GIT}/openembedded/nrpe-plugins.git;branch=master;${IOT_GIT_OPTS}"
+SRC_URI = "git://github.com/BeeeOn/nagios-plugins-beeeon.git"
+SRCREV = "v${PV}"
 
 S = "${WORKDIR}/git"
 
@@ -22,5 +25,4 @@ FILES_${PN} = "${libdir}/nagios"
 
 RDEPENDS_${PN} = "bash bc sudo sudo-nagios-config"
 
-do_configure[noexec] = "1"
 do_compile[noexec] = "1"
