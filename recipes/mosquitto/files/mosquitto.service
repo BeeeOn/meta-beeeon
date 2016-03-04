@@ -2,7 +2,7 @@
 Description=Mosquitto - MQTT broker
 
 [Service]
-ExecStart=/usr/sbin/mosquitto
+ExecStart=@SBINDIR@/mosquitto -c @SYSCONFDIR@/mosquitto/mosquitto.conf
 Restart=on-failure
 
 [Install]

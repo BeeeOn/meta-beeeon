@@ -32,8 +32,12 @@ GROUPADD_PARAM_${PN} = "-r ${PN}"
 inherit cmake systemd useradd
 
 do_install_append () {
+    sed -i -e 's,^#include_dir.*,include_dir ${sysconfdir}/mosquitto.d,' ${D}${sysconfdir}/mosquitto/mosquitto.conf
+
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/${SYSTEMD_SERVICE_${PN}} ${D}${systemd_system_unitdir}
+    sed -i -e 's,@SBINDIR@,${sbindir},g' ${D}${systemd_system_unitdir}/${SYSTEMD_SERVICE_${PN}}
+    sed -i -e 's,@SYSCONFDIR@,${sysconfdir},g' ${D}${systemd_system_unitdir}/${SYSTEMD_SERVICE_${PN}}
 }
 
 PACKAGE_BEFORE_PN =+ "\
