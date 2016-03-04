@@ -43,6 +43,3 @@ CONFFILES_${PN} += "\
     ${sysconfdir}/beeeon/vpt_sensor.ini \
     ${sysconfdir}/beeeon/xmltool.ini \
 "
-
-RDEPENDS_${PN} = "libpoco libmosquitto"
-RREPLACES_${PN} = "short-commands"
