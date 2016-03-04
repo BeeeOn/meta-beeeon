@@ -40,7 +40,7 @@ IMAGE_INSTALL += " \
         beeeon-adaman \
         beeeon-factory \
         fitprotocold \
-        mosquitto mosquitto-clients libmosquitto \
+        mosquitto mosquitto-clients \
         python-paho-mqtt \
         golden-firmware \
         nrpe \
