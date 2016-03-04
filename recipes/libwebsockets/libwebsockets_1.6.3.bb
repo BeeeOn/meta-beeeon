@@ -1,16 +1,13 @@
 SUMMARY = "The C library for lightweight websocket clients and servers"
 HOMEPAGE = "https://libwebsockets.org/trac/libwebsockets"
-# XXX Correct lincese is:
-#LICENSE = "LGPL-2.1-with-libwebsockets-exception"
-LICENSE = "LGPL-2.1"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=041a1dec49ec8a22e7f101350fd19550"
+LICENSE = "LGPL-2.1-with-libwebsockets-exception"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=6920f94d700b266745ade6c417aba2c4"
+NO_GENERIC_LICENSE[LGPL-2.1-with-libwebsockets-exception] = "LICENSE"
 DEPENDS = "zlib openssl"
 
-# This rev corresponds to the v1.4-chrome43-firefox-36 tag
-SRCREV = "16fb0132cec0fcced29bce6d86eaf94a9beb9785"
-SRC_URI = "git://git.libwebsockets.org/libwebsockets"
-
-S = "${WORKDIR}/git"
+SRC_URI = "https://github.com/warmcat/libwebsockets/archive/v${PV}.tar.gz"
+SRC_URI[md5sum] = "a3e4efba162c9115da1588e3af960acd"
+SRC_URI[sha256sum] = "b3bb6f9cb5dc1992f1ce23e3dc3ad4b3f0915effbe306bea5d95dc02a1d2fab4"
 
 inherit cmake
 
