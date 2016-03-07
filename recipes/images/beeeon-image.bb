@@ -57,6 +57,10 @@ IMAGE_INSTALL += " \
 # Broken:
 # ltrace
 
+IMAGE_CLASSES += "sdcard_image-beeeon"
+IMAGE_FSTYPES += "beeeon-sdimg"
+IMAGE_FSTYPES_remove = "sunxi-sdimg"
+
 IMAGE_LINGUAS       = " "
 
 IMAGE_FEATURES += "package-management"
