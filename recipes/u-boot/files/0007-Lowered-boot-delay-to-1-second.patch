@@ -1,7 +1,7 @@
-From 17550780ffad616aa57b45b393d453c2225b900f Mon Sep 17 00:00:00 2001
+From fc48cc8f46a837b258ad68eeff89cd7a63ae1f59 Mon Sep 17 00:00:00 2001
 From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 Date: Mon, 29 Jun 2015 20:12:23 +0200
-Subject: [PATCH 7/9] Lowered boot delay to 1 second
+Subject: [PATCH 07/11] Lowered boot delay to 1 second
 
 Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---

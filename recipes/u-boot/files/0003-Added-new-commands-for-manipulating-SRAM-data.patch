@@ -1,7 +1,7 @@
-From 9ca4c983c381e438f53b0050867e13e3f8a05821 Mon Sep 17 00:00:00 2001
+From c156a7c19fb7f2732709bccdc67d5d58dda78ede Mon Sep 17 00:00:00 2001
 From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 Date: Mon, 29 Jun 2015 20:07:56 +0200
-Subject: [PATCH 3/9] Added new commands for manipulating SRAM data
+Subject: [PATCH 03/11] Added new commands for manipulating SRAM data
 
 Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
  1 file changed, 225 insertions(+)
 
 diff --git a/common/cmd_mem.c b/common/cmd_mem.c
-index 43c3fb6..8e48b6e 100644
+index 43c3fb6..ec0ee7b 100644
 --- a/common/cmd_mem.c
 +++ b/common/cmd_mem.c
 @@ -30,6 +30,8 @@ DECLARE_GLOBAL_DATA_PTR;
@@ -18,13 +18,13 @@ index 43c3fb6..8e48b6e 100644
  #endif
 +#define CONFIG_SRAM_SIZE 64
 +#define CONFIG_SRAM_CTRLBYTES 4
-
+ 
  static int mod_mem(cmd_tbl_t *, int, int, int, char * const []);
-
+ 
 @@ -157,6 +159,206 @@ static int do_mem_nm(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
  	return mod_mem (cmdtp, 0, flag, argc, argv);
  }
-
+ 
 +/*
 + * These functions are custom
 + * for the BeeeOn usecase
@@ -231,7 +231,7 @@ index 43c3fb6..8e48b6e 100644
 @@ -1249,6 +1451,29 @@ U_BOOT_CMD(
  #endif
  );
-
+ 
 +U_BOOT_CMD(
 +	minc, 2, 0, do_mem_incr,
 +	"Increment value of SRAM-layout at given address",
@@ -255,8 +255,9 @@ index 43c3fb6..8e48b6e 100644
 +	"Check wherther SRAM layout at given address is valid",
 +	"address"
 +);
-
+ 
  U_BOOT_CMD(
  	mm,	2,	1,	do_mem_mm,
---
+-- 
 1.9.1
+

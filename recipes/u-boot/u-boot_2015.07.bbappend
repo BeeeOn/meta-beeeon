@@ -9,6 +9,7 @@ SRC_URI += " \
 	file://0008-Disabled-I2C-bus-change-messages.patch \
 	file://0009-Disabled-USB-boot-and-USB-keyboard-input.patch \
 	file://0010-Modified-default-memory-layout-to-force-normal-boot-.patch \
-        "
+	file://0011-u-boot-change-kernel-memory-mapping.patch \
+	"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"

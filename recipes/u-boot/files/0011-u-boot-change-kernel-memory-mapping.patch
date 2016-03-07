@@ -1,0 +1,28 @@
+From 864c5ef15c5a86ede1de20be714257713c36bd8b Mon Sep 17 00:00:00 2001
+From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+Date: Thu, 29 Oct 2015 16:19:55 +0100
+Subject: [PATCH 11/11] u-boot: change kernel memory mapping
+
+Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+---
+ include/configs/sunxi-common.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
+index 9c5da9e..de95807 100644
+--- a/include/configs/sunxi-common.h
++++ b/include/configs/sunxi-common.h
+@@ -370,8 +370,8 @@ extern int soft_i2c_gpio_scl;
+ 	"fdt_addr_r=" __stringify(SDRAM_OFFSET(3000000)) "\0" \
+ 	"scriptaddr=" __stringify(SDRAM_OFFSET(3100000)) "\0" \
+ 	"pxefile_addr_r=" __stringify(SDRAM_OFFSET(3200000)) "\0" \
+-	"ramdisk_addr_r=" __stringify(SDRAM_OFFSET(3300000)) "\0" \
+-	"bootcounter_addr_r=" __stringify(SDRAM_OFFSET(3400000)) "\0"
++	"bootcounter_addr_r=" __stringify(SDRAM_OFFSET(3300000)) "\0" \
++	"ramdisk_addr_r=" __stringify(SDRAM_OFFSET(3400000)) "\0"
+ 
+ #ifdef CONFIG_MMC
+ #define BOOT_TARGET_DEVICES_MMC(func) func(MMC, mmc, 0)
+-- 
+1.9.1
+
