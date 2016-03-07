@@ -11,6 +11,8 @@ IMAGE_INSTALL += " \
         gdb \
 	packagegroup-core-boot \
         kernel-modules \
+	kernel-image \
+	kernel-devicetree \
         openssh-sshd openssh-ssh openssh-scp openssh-sftp openssh-sftp-server \
         libpoco \
         sshfs-fuse \
