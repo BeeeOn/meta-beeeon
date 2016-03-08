@@ -1,0 +1,70 @@
+From cf883c88db1a10f438750816a76558fe584f4396 Mon Sep 17 00:00:00 2001
+From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+Date: Mon, 29 Jun 2015 20:10:59 +0200
+Subject: [PATCH 06/11] Modified boot sequence execution based on SRAM
+ evaluation
+
+Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
+---
+ include/config_distro_bootcmd.h | 45 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+diff --git a/include/config_distro_bootcmd.h b/include/config_distro_bootcmd.h
+index 540a8f6..9c7fb38 100644
+--- a/include/config_distro_bootcmd.h
++++ b/include/config_distro_bootcmd.h
+@@ -30,6 +30,51 @@
+ #define CONFIG_PARTITION_UUIDS
+ #define CONFIG_CMD_PART
+ 
++#define BOOTENV_SHARED_BLKDEV_BODY_MMC(devtypel) \
++		"if " #devtypel " dev ${devnum}; then " \
++			"setenv devtype " #devtypel "; " \
++			"setenv mmc_dev 0; " \
++			"setenv mmc_normal_part 2; " \
++			"setenv mmc_recovery_part 3; " \
++			"run read_sram; " \
++			"if mcheck $bootcounter_addr_r; then " \
++			"echo INFO: SRAM OK; else " \
++			"echo ERROR: SRAM IS CORRUPT; " \
++			"run initialize_sram; fi; " \
++			"if bootcheck $bootcounter_addr_r; then " \
++			"run mmc_boot_uimage_recovery; else " \
++			"run mmc_boot_uimage; fi; " \
++		"fi\0"
++
++#define BOOTENV_SHARED_BLKDEV_MMC(devtypel) \
++	#devtypel "_boot=" \
++	BOOTENV_SHARED_BLKDEV_BODY_MMC(devtypel)
++
++#define BOOTENV_LEGACY_ZIMAGE \
++	"i2c_busnum=2\0" \
++	"i2c_sram_addr=0x6f\0" \
++	"i2c_sram_offset=0x20\0" \
++	"i2c_sram_count=0x40\0" \
++	\
++	"mmc_boot_uimage=" \
++		"echo INFO: Booting BeeeOn Adapter in NORMAL mode; " \
++		"run increment_sram; " \
++		"ext2load mmc ${mmc_dev}:${mmc_normal_part} ${kernel_addr_r} /boot/uImage; " \
++		"ext2load mmc ${mmc_dev}:${mmc_normal_part} ${fdt_addr_r} /boot/${fdtfile}; " \
++		"setenv bootargs console=${console} " \
++		"root=/dev/mmcblk${mmc_dev}p${mmc_normal_part} rw rootwait panic=12; " \
++		"bootm ${kernel_addr_r} - ${fdt_addr_r}\0" \
++		\
++	"mmc_boot_uimage_recovery=" \
++		"echo WARNING: Booting BeeeOn Adapter in RECOVERY mode; " \
++		"run increment_sram; " \
++		"ext2load mmc ${mmc_dev}:${mmc_recovery_part} ${kernel_addr_r} /boot/uImage; " \
++		"ext2load mmc ${mmc_dev}:${mmc_recovery_part} ${fdt_addr_r} /boot/${fdtfile}; " \
++		"setenv bootargs console=${console} " \
++		"root=/dev/mmcblk${mmc_dev}p${mmc_recovery_part} ro rootwait panic=12; " \
++		"bootm ${kernel_addr_r} - ${fdt_addr_r}\0"
++
++
+ #define BOOTENV_SHARED_BLKDEV_BODY(devtypel) \
+ 		"if " #devtypel " dev ${devnum}; then " \
+ 			"setenv devtype " #devtypel "; " \
+-- 
+1.9.1
+

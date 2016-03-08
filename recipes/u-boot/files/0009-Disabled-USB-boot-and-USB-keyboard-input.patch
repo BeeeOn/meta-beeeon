@@ -1,7 +1,7 @@
-From 3ee5e6602b3dfcff3db90af13701d4082d97bf4d Mon Sep 17 00:00:00 2001
+From 87cb42481771ae40615cbc77842fccb10d321333 Mon Sep 17 00:00:00 2001
 From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 Date: Mon, 29 Jun 2015 20:13:34 +0200
-Subject: [PATCH 9/9] Disabled USB boot and USB keyboard input
+Subject: [PATCH 09/11] Disabled USB boot and USB keyboard input
 
 Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---
@@ -9,10 +9,10 @@ Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
-index db50e3a..681cbbd 100644
+index 1acbf51..9c5da9e 100644
 --- a/include/configs/sunxi-common.h
 +++ b/include/configs/sunxi-common.h
-@@ -427,8 +427,7 @@ extern int soft_i2c_gpio_scl;
+@@ -402,8 +402,7 @@ extern int soft_i2c_gpio_scl;
  
  #ifdef CONFIG_USB_KEYBOARD
  #define CONSOLE_STDIN_SETTINGS \

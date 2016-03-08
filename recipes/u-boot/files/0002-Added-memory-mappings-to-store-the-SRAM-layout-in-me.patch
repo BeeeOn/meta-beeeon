@@ -1,7 +1,8 @@
-From 0ba6d1889c45438ef4018ff3f7d6f3fbadb4c722 Mon Sep 17 00:00:00 2001
+From 8bfa21b3484f3f5098ae2ece7080c257e67c6d91 Mon Sep 17 00:00:00 2001
 From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 Date: Mon, 29 Jun 2015 20:07:01 +0200
-Subject: [PATCH 2/9] Added memory mappings to store the SRAM layout in memory
+Subject: [PATCH 02/11] Added memory mappings to store the SRAM layout in
+ memory
 
 Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---
@@ -9,10 +10,10 @@ Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
-index 07db736..db50e3a 100644
+index 9576bc1..1acbf51 100644
 --- a/include/configs/sunxi-common.h
 +++ b/include/configs/sunxi-common.h
-@@ -395,7 +395,8 @@ extern int soft_i2c_gpio_scl;
+@@ -370,7 +370,8 @@ extern int soft_i2c_gpio_scl;
  	"fdt_addr_r=" __stringify(SDRAM_OFFSET(3000000)) "\0" \
  	"scriptaddr=" __stringify(SDRAM_OFFSET(3100000)) "\0" \
  	"pxefile_addr_r=" __stringify(SDRAM_OFFSET(3200000)) "\0" \

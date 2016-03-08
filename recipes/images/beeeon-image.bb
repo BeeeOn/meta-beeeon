@@ -11,6 +11,8 @@ IMAGE_INSTALL += " \
         gdb \
 	packagegroup-core-boot \
         kernel-modules \
+	kernel-image \
+	kernel-devicetree \
         openssh-sshd openssh-ssh openssh-scp openssh-sftp openssh-sftp-server \
         libpoco \
         sshfs-fuse \
@@ -54,6 +56,10 @@ IMAGE_INSTALL += " \
 
 # Broken:
 # ltrace
+
+IMAGE_CLASSES += "sdcard_image-beeeon"
+IMAGE_FSTYPES += "beeeon-sdimg"
+IMAGE_FSTYPES_remove = "sunxi-sdimg"
 
 IMAGE_LINGUAS       = " "
 

@@ -1,7 +1,8 @@
-From 0ad1b452e1f59f90bffea441364c02b0596af004 Mon Sep 17 00:00:00 2001
+From 8e13fe4505002baace617f48dc9856074e902c1f Mon Sep 17 00:00:00 2001
 From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 Date: Sun, 23 Aug 2015 18:51:08 +0200
-Subject: [PATCH] Modified default memory layout to force normal boot for now
+Subject: [PATCH 10/11] Modified default memory layout to force normal boot for
+ now
 
 Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---

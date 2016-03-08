@@ -1,7 +1,7 @@
-From 27b30ab353ebf5877b9b35cefa57c06435f9a2c6 Mon Sep 17 00:00:00 2001
+From 4efa783eca8ccd93f692553786f131eb257a2b1f Mon Sep 17 00:00:00 2001
 From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 Date: Mon, 29 Jun 2015 20:09:58 +0200
-Subject: [PATCH 5/9] Added shell commands for evaluating SRAM data
+Subject: [PATCH 05/11] Added shell commands for evaluating SRAM data
 
 Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---

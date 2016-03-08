@@ -1,7 +1,7 @@
-From bc6921ed9a10d4c8d22e2ff836761a91f8a1ec63 Mon Sep 17 00:00:00 2001
+From 83e5d13cbc88786fad830f4ff767ae27c4535223 Mon Sep 17 00:00:00 2001
 From: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 Date: Mon, 29 Jun 2015 20:13:01 +0200
-Subject: [PATCH 8/9] Disabled I2C bus change messages
+Subject: [PATCH 08/11] Disabled I2C bus change messages
 
 Signed-off-by: Matej Postolka <xposto02@stud.fit.vutbr.cz>
 ---
