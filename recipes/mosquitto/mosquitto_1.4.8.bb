@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
        file://edl-v10;md5=c09f121939f063aeb5235972be8c722c \
        "
 DEPENDS = "openssl util-linux"
-PR = "r1"
+PR = "r2"
 
 SRC_URI = "\
     http://mosquitto.org/files/source/mosquitto-${PV}.tar.gz \
@@ -32,7 +32,8 @@ GROUPADD_PARAM_${PN} = "-r ${PN}"
 inherit cmake systemd useradd
 
 do_install_append () {
-    sed -i -e 's,^#include_dir.*,include_dir ${sysconfdir}/mosquitto.d,' ${D}${sysconfdir}/mosquitto/mosquitto.conf
+    sed -i -e 's,^#include_dir.*,include_dir ${sysconfdir}/mosquitto/conf.d,' ${D}${sysconfdir}/mosquitto/mosquitto.conf
+    install -d ${D}${sysconfdir}/mosquitto/conf.d
 
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/${SYSTEMD_SERVICE_${PN}} ${D}${systemd_system_unitdir}
