@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "\
     file://check_systemd;beginline=2;endline=6;md5=110362454ff54e2fd8261567002554e7 \
 "
 NO_GENERIC_LICENSE[Lunch] = "check_linux_memory"
-PV = "1.0.4"
+PV = "1.0.5"
 
 SRC_URI = "git://github.com/BeeeOn/nagios-plugins-beeeon.git"
 SRCREV = "v${PV}"
