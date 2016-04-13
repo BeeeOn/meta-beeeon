@@ -1,0 +1,27 @@
+From d557d9fbed4067a3ca4c223c8c02f5c73c364d7a Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Wed, 11 May 2016 14:06:15 +0200
+Subject: [PATCH] ini: configure for testing use
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ etc/beeeon/adaman.ini | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/etc/beeeon/adaman.ini b/etc/beeeon/adaman.ini
+index 01f47de..9de978f 100644
+--- a/etc/beeeon/adaman.ini
++++ b/etc/beeeon/adaman.ini
+@@ -1,6 +1,6 @@
+ [connection]
+-host=localhost
++host=ant-2.fit.vutbr.cz
+ port=8877
+ 
+ [log]
+-level=trace
+\ No newline at end of file
++level=warning
+-- 
+1.8.3.1
+
