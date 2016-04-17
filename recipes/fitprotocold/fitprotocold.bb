@@ -1,23 +1,33 @@
 SUMMARY = "BeeeOn PAN Daemon"
-LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0557f9d92cf58f2ccdd50f62f8ac0b28"
-PV = "0.11-fake"
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=384700fe47eef8c1ae6deae8204b1554"
+DEPENDS = "glib-2.0 libpoco mosquitto"
+PV = "0.12+git${SRCPV}-fake"
 
+SRCREV = "e8c626272edc03ae90158b8dff3340b552e0eb98"
 SRC_URI = "\
-    file://fitprotocold \
+    ${IOT_GIT}/sensors.git;branch=compile-pan;${IOT_GIT_OPTS} \
     file://fitprotocold.service \
-    "
+"
 
-S = "${WORKDIR}"
+S = "${WORKDIR}/git"
 
 SYSTEMD_SERVICE_${PN} = "fitprotocold.service"
 
+inherit systemd
+
+do_configure[noexec] = "1"
+
+do_compile () {
+    ./build.sh -t pan -p hw
+}
+
 do_install () {
-    install -d ${D}${systemd_unitdir}/system
-    install -m 0644 ${S}/${SYSTEMD_SERVICE_${PN}} ${D}${systemd_unitdir}/system
+    install -d ${D}${systemd_system_unitdir}
+    install -m 0644 ${WORKDIR}/${SYSTEMD_SERVICE_${PN}} ${D}${systemd_system_unitdir}
 
     install -d ${D}${bindir}
-    install -m 0755 ${S}/fitprotocold ${D}${bindir}
+    install -m 0755 ${S}/build/fitprotocold ${D}${bindir}
 }
 
 pkg_postinst_${PN}() {
@@ -28,6 +38,4 @@ pkg_postinst_${PN}() {
     fi
 }
 
-RDEPENDS_${PN} = "libmosquitto libpoco glib-2.0"
-
-inherit systemd
+RDEPENDS_${PN} = "mosquitto"
