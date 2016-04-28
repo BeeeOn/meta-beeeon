@@ -34,7 +34,7 @@ IMAGE_INSTALL += " \
         mc \
         which \
         i2c-tools \
-        eeprom-get-mac bee-macchange \
+        eeprom-get-mac beeeon-macchange \
         ethtool \
         openvpn \
         openvpn-beeeon \
