@@ -15,9 +15,17 @@
 #include <linux/i2c-dev-user.h>
 
 #define I2C_BUS_NUM		2
+
 #define I2C_EEPROM_ADDR		0x57
 #define I2C_EEPROM_RANGE_FIRST	0xf2
 #define	I2C_EEPROM_RANGE_LAST	0xf7
+
+#define I2C_RTCC_ADDR           0x6f
+#define I2C_RTCC_UNLOCK_REG     0x09
+#define I2C_RTCC_UNLOCK_BYTE_1  0x55
+#define I2C_RTCC_UNLOCK_BYTE_2  0xaa
+
+#define IFACE_MAC_PATH "/sys/class/net/eth0/address"
 
 #define MISSING_FUNC_FMT	"Error: Adapter does not have %s capability\n"
 
@@ -112,7 +120,6 @@ int set_slave_addr(int file, int address, int force)
         return 0;
 }
 
-
 int main(int argc, char *argv[])
 {
 	int i, j, res, i2cbus, address, size, file;
@@ -122,6 +129,10 @@ int main(int argc, char *argv[])
 	int pec = 0, even = 0;
 	int force = 0;
 	int first = 0x00, last = 0xff;
+
+        char addr[6];
+        int addrSize = sizeof(addr);
+        int addrPos = 0;
 
 	i2cbus = I2C_BUS_NUM;
 	if (i2cbus < 0) {
@@ -232,17 +243,68 @@ int main(int argc, char *argv[])
 				if (size == I2C_SMBUS_WORD_DATA)
 					printf("XX ");
 			} else {
-				printf("%02x", block[i+j]);
-				if (j != last-first)
-					printf("%c", ':');
-
-				if (size == I2C_SMBUS_WORD_DATA)
-					printf("%02x ", block[i+j+1]);
+                                if(addrPos < addrSize)
+                                {
+                                  addr[addrPos] = block[i+j];
+                                  addrPos++;
+                                }
+                                else
+                                {
+                                  fprintf(stderr, "ERROR: MAC Address buffer overflow\n");
+                                  exit(1);
+                                }
 			}
 			if (size == I2C_SMBUS_WORD_DATA)
 				j++;
 		}
-		printf("\n");
+
+                /* Check if stored MAC is valid */
+                int macValid = 0;
+                for(int i=0; i<addrSize; i++)
+                {
+                  if(addr[i] != 0xFF)
+                  {
+                    macValid = 1;
+                    break;
+                  }
+                }
+
+                /* Create a new MAC if EEPROM data is invalid */
+                if(!macValid)
+                {
+                  FILE *fp = fopen(IFACE_MAC_PATH, "r");
+                  if(fp == NULL)
+                  {
+                    fprintf(stderr, "ERROR: Failed to open interface file to read current MAC\n");
+                    exit(1);
+                  }
+
+                  int trash;
+
+                  addr[0] = 0x02;
+                  addr[1] = 0xBE;
+                  addr[2] = 0xEE;
+
+                  fscanf(fp, "%02x:%02x:%02x:%02x:%02x:%02x", &trash, &trash, &trash, &addr[3], &addr[4], &addr[5]);
+                  fclose(fp);
+
+                  /* Writing to EEPROM requires performing an unlock sequence, see datasheet */
+                  set_slave_addr(file, I2C_RTCC_ADDR, 1);
+                  i2c_smbus_write_byte_data(file, I2C_RTCC_UNLOCK_REG, I2C_RTCC_UNLOCK_BYTE_1);
+                  i2c_smbus_write_byte_data(file, I2C_RTCC_UNLOCK_REG, I2C_RTCC_UNLOCK_BYTE_2);
+                  set_slave_addr(file, I2C_EEPROM_ADDR, 1);
+
+                  i2c_smbus_write_block_data(file, first-1, addrSize, addr);
+                }
+
+                /* Dump address */
+                for(int i=0; i<addrSize; i++)
+                {
+                  printf("%02x", addr[i]);
+                  if(i != addrSize - 1)
+                    printf("%c", ':');
+                }
+                printf("\n");
 	}
 	else {
 		exit(1);
