@@ -37,6 +37,7 @@ IMAGE_INSTALL += " \
         openvpn-beeeon \
         beeeon-adaapp \
         beeeon-factory \
+        beeeon-manager-client \
         fitprotocold \
         mosquitto mosquitto-clients \
         python-paho-mqtt \
