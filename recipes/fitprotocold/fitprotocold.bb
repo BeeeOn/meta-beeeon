@@ -2,11 +2,11 @@ SUMMARY = "BeeeOn PAN Daemon"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=384700fe47eef8c1ae6deae8204b1554"
 DEPENDS = "glib-2.0 libpoco mosquitto"
-PV = "0.12+git${SRCPV}-fake"
+PV = "0.13+git${SRCPV}-fake"
 
-SRCREV = "e8c626272edc03ae90158b8dff3340b552e0eb98"
+SRCREV = "30b239fcc906a3e52a604c47e758f0e382ef061c"
 SRC_URI = "\
-    ${IOT_GIT}/sensors.git;branch=compile-pan;${IOT_GIT_OPTS} \
+    ${IOT_GIT}/sensors.git;branch=devel-oe-build;${IOT_GIT_OPTS} \
     file://fitprotocold.service \
 "
 
