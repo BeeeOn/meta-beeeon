@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "\
     file://include/nrpe.h;beginline=7;endline=12;md5=e04e42d1a10bc0e1413bf456f9fb9995 \
     "
 DEPENDS = "openssl tcp-wrappers"
-PR = "r1"
+PR = "r2"
 
 SRC_URI = "\
     http://heanet.dl.sourceforge.net/project/nagios/nrpe-2.x/nrpe-${PV}/nrpe-${PV}.tar.gz \
