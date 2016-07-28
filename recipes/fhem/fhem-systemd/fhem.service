@@ -1,0 +1,15 @@
+[Unit]
+Description=FHEM Server for House Automation
+
+[Service]
+TimeoutStartSec=30
+TimeoutStopSec=20
+Nice=-5
+Type=forking
+WorkingDirectory=/usr/share/fhem
+ExecStart=/usr/bin/perl ./fhem.pl /etc/fhem/fhem.cfg
+RestartSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
