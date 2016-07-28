@@ -3,9 +3,9 @@ SUMMARY = "Adapter Manager - handling of adapter software upgrades"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.md;md5=a53b0a63c56e7b4c3a8bb2a812b86e73"
 DEPENDS = "libpoco protobuf beeeon-manager-core"
-PV = "0.3"
+PV = "0.3.1"
 
-SRCREV = "7d4b4916c1d452bbe044b98f96b3ed66e9753cf2"
+SRCREV = "58842e17bcdbed86fe9af4622369a5d0efa01a04"
 SRC_URI = "\
     git://github.com/BeeeOn/gateway-man-client \
     file://0001-ini-configure-for-testing-use.patch \
