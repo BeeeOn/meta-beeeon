@@ -49,6 +49,25 @@ IMAGE_INSTALL += " \
         openhab \
         libmpsse \
 "
+
+# FHEM packages
+IMAGE_INSTALL += "\
+    fhem \
+    fhem-config \
+    fhem-systemd \
+"
+
+# Python modules for WMBUS
+IMAGE_INSTALL += "\
+    python-bitstring \
+    python-pyusb \
+"
+
+# Python modules for D-Link WiFi gadgets
+IMAGE_INSTALL += "\
+    python-lxml \
+"
+
 # XXX Doplnit lmsensors
 # XXX Not all python-modules should be included
 
