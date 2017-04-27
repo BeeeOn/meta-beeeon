@@ -21,6 +21,7 @@ IMAGE_INSTALL += " \
         hostapd \
 	opkg \
         iptables lsof screen socat sysstat \
+        tmux \
         evtest devmem2 procps strace ldd \
         systemd systemd-machine-units udev \
         systemd-network-conf \
