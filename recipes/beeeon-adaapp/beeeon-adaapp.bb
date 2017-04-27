@@ -2,9 +2,9 @@ SUMMARY = "BeeeOn Adapter Application - central application of an adapter"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e2c6cbed4654f882832b6d28c4454eca"
 DEPENDS = "libpoco mosquitto"
-PV = "1.8"
+PV = "2.0.1"
 
-SRCREV = "f01050bf15ad84c2069003076a0b35fd06ea4df4"
+SRCREV = "28a136cefd31343bca2d11312447baadf1c29232"
 SRC_URI = "\
     git://github.com/BeeeOn/gateway-app.git \
     file://0001-ini-configure-for-production-use.patch \
