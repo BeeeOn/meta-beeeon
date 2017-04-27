@@ -49,13 +49,6 @@ IMAGE_INSTALL += " \
         libmpsse \
 "
 
-# FHEM packages
-IMAGE_INSTALL += "\
-    fhem \
-    fhem-config \
-    fhem-systemd \
-"
-
 # Python modules for WMBUS
 IMAGE_INSTALL += "\
     python-bitstring \
