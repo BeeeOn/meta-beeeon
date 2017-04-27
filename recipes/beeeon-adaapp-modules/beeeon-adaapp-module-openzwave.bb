@@ -1,8 +1,8 @@
 SUMMARY = "BeeeOn Adapter Application module - OpenZWave"
 LICENSE = "BSD-3-Clause"
-LIC_FILES_CHKSUM = "file://../LICENSE;md5=384700fe47eef8c1ae6deae8204b1554"
+LIC_FILES_CHKSUM = "file://../LICENSE;md5=7a36c31e50dea05245ab4e98e6c2c4ce"
 DEPENDS = "openzwave libpoco mosquitto"
-PV = "0.0.2-fake+git${SRCPV}"
+PV = "0.0.3-fake+git${SRCPV}"
 
 SRCREV = "6b836a0e8014cc30672fb109ad183919347ad2a8"
 SRC_URI = "\

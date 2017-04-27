@@ -38,6 +38,8 @@ IMAGE_INSTALL += " \
         openvpn \
         openvpn-beeeon \
         beeeon-adaapp \
+        beeeon-adaapp-module-iodaemon \
+        beeeon-adaapp-module-openzwave \
         beeeon-factory \
         fitprotocold \
         mosquitto mosquitto-clients \
