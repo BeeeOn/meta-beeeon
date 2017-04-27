@@ -1,0 +1,129 @@
+From 626768d735e7afb2effe02f8208f7f0c5beb3b54 Mon Sep 17 00:00:00 2001
+From: Tomas Novotny <tomas@novotny.cz>
+Date: Thu, 8 Dec 2016 20:09:10 +0100
+Subject: [PATCH 2/2] openzwave: fix include path for openzwave lib
+
+It has to be corrected because I changed the harcoded search paths in
+cmake.
+
+Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+---
+ OpenZWave/MosquittoClient.cpp       | 2 +-
+ OpenZWave/NotificationProcessor.cpp | 2 +-
+ OpenZWave/NotificationProcessor.h   | 2 +-
+ OpenZWave/OpenZWaveDriver.h         | 2 +-
+ OpenZWave/OpenZWaveModule.cpp       | 4 ++--
+ OpenZWave/PocoLoggerAdapter.h       | 2 +-
+ OpenZWave/ZWaveMessage.cpp          | 2 +-
+ OpenZWave/ZWaveMessage.h            | 2 +-
+ 8 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/OpenZWave/MosquittoClient.cpp b/OpenZWave/MosquittoClient.cpp
+index 0ebd25a..7fb944c 100644
+--- a/OpenZWave/MosquittoClient.cpp
++++ b/OpenZWave/MosquittoClient.cpp
+@@ -4,7 +4,7 @@
+  * @date September, 2016
+  */
+ 
+-#include <Manager.h>
++#include <openzwave/Manager.h>
+ 
+ #include <Poco/Runnable.h>
+ #include <Poco/NumberParser.h>
+diff --git a/OpenZWave/NotificationProcessor.cpp b/OpenZWave/NotificationProcessor.cpp
+index 0a277a5..ac352bc 100644
+--- a/OpenZWave/NotificationProcessor.cpp
++++ b/OpenZWave/NotificationProcessor.cpp
+@@ -12,7 +12,7 @@
+ #include <Poco/NumberParser.h>
+ #include <Poco/ScopedLock.h>
+ 
+-#include <Manager.h>
++#include <openzwave/Manager.h>
+ 
+ #include "NotificationProcessor.h"
+ 
+diff --git a/OpenZWave/NotificationProcessor.h b/OpenZWave/NotificationProcessor.h
+index 2c1e170..746b949 100644
+--- a/OpenZWave/NotificationProcessor.h
++++ b/OpenZWave/NotificationProcessor.h
+@@ -13,7 +13,7 @@
+ #include <Poco/Mutex.h>
+ #include <Poco/Nullable.h>
+ 
+-#include <Notification.h>
++#include <openzwave/Notification.h>
+ 
+ #include "BeeeOnMessage.h"
+ #include "GenericZWaveMessageFactory.h"
+diff --git a/OpenZWave/OpenZWaveDriver.h b/OpenZWave/OpenZWaveDriver.h
+index f3b73c8..5b5e0fd 100644
+--- a/OpenZWave/OpenZWaveDriver.h
++++ b/OpenZWave/OpenZWaveDriver.h
+@@ -10,7 +10,7 @@
+ 
+ #include <Poco/RegularExpression.h>
+ 
+-#include <Manager.h>
++#include <openzwave/Manager.h>
+ 
+ /*
+  * The Driver class handles communication between OpenZWave and
+diff --git a/OpenZWave/OpenZWaveModule.cpp b/OpenZWave/OpenZWaveModule.cpp
+index 4e8c23a..d4efdb2 100644
+--- a/OpenZWave/OpenZWaveModule.cpp
++++ b/OpenZWave/OpenZWaveModule.cpp
+@@ -12,8 +12,8 @@
+ #include <Poco/Logger.h>
+ #include <Poco/Util/AbstractConfiguration.h>
+ 
+-#include <Manager.h>
+-#include <Options.h>
++#include <openzwave/Manager.h>
++#include <openzwave/Options.h>
+ 
+ #include "MosquittoClient.h"
+ #include "OpenZWaveModule.h"
+diff --git a/OpenZWave/PocoLoggerAdapter.h b/OpenZWave/PocoLoggerAdapter.h
+index ff0011c..ae56f65 100644
+--- a/OpenZWave/PocoLoggerAdapter.h
++++ b/OpenZWave/PocoLoggerAdapter.h
+@@ -7,7 +7,7 @@
+ #pragma once
+ 
+ #include <Poco/Logger.h>
+-#include <platform/unix/LogImpl.h>
++#include <openzwave/platform/unix/LogImpl.h>
+ 
+ class PocoLoggerAdapter : public OpenZWave::i_LogImpl {
+ public:
+diff --git a/OpenZWave/ZWaveMessage.cpp b/OpenZWave/ZWaveMessage.cpp
+index 65a3756..492ec4f 100644
+--- a/OpenZWave/ZWaveMessage.cpp
++++ b/OpenZWave/ZWaveMessage.cpp
+@@ -9,7 +9,7 @@
+ #include <Poco/NumberParser.h>
+ #include <Poco/Exception.h>
+ 
+-#include <Manager.h>
++#include <openzwave/Manager.h>
+ 
+ #include "ZWaveMessage.h"
+ #include "NotificationProcessor.h"
+diff --git a/OpenZWave/ZWaveMessage.h b/OpenZWave/ZWaveMessage.h
+index f7972c8..9abf6be 100644
+--- a/OpenZWave/ZWaveMessage.h
++++ b/OpenZWave/ZWaveMessage.h
+@@ -11,7 +11,7 @@
+ 
+ #include <Poco/Logger.h>
+ 
+-#include <Manager.h>
++#include <openzwave/Manager.h>
+ 
+ #define COMMAND_CLASS_ALARM              113
+ #define COMMAND_CLASS_BATTERY            128
+-- 
+1.8.3.1
+
