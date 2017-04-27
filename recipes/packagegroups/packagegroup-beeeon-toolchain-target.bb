@@ -3,6 +3,7 @@ SUMMARY = "Target packages for BeeeOn SDK"
 LICENSE = "MIT"
 
 RDEPENDS_${PN} += "\
+    cppunit-dev \
     dbus-dev \
     dbus-glib-dev \
     libmosquitto \
