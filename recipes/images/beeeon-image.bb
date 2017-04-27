@@ -46,6 +46,7 @@ IMAGE_INSTALL += " \
         nagios-plugins-beeeon \
         python-pyserial \
         openhab \
+        openzwave \
         libmpsse \
 "
 

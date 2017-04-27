@@ -11,6 +11,7 @@ RDEPENDS_${PN} += "\
     libpoco-dev \
     mosquitto-dev \
     openssl-dev \
+    openzwave-dev \
     protobuf-dev \
     python-dev \
     systemd-dev \
