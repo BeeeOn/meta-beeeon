@@ -15,6 +15,7 @@ IMAGE_INSTALL += " \
         sshfs-fuse \
         cpufrequtils \
         curl \
+        crda \
         tzdata \
         htop rsync \
         iw wpa-supplicant \
